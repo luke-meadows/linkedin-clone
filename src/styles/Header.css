@@ -1,11 +1,17 @@
 .header {
-  display: flex;
-  justify-content: space-evenly;
   position: sticky;
   top: 0;
   z-index: 10;
-  padding: 10px;
+  padding: 10px 0;
   border-bottom: 1px solid lightgray;
+  background: white;
+}
+.header__container {
+  max-width: var(--max-width);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin: 0 auto;
 }
 .header__left {
   display: flex;

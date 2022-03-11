@@ -1,0 +1,8 @@
+.app__body {
+  max-width: var(--max-width);
+  display: flex;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  column-gap: 10px;
+}
