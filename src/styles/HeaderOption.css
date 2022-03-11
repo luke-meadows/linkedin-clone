@@ -1,0 +1,21 @@
+.Header__Option {
+  color: gray;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.Header__Option:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.Header__Option > h3 {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.Header__Option > img {
+  object-fit: contain;
+  height: 24px;
+  border-radius: 50%;
+}
