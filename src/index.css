@@ -9,7 +9,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --max-width: 1000px;
+  --max-width: 1100px;
+  background: #f3f2ef;
 }
 
 code {

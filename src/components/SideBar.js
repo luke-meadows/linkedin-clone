@@ -1,10 +1,17 @@
 import '../styles/Sidebar.css';
 import { Avatar } from '@mui/material';
-import { useEffect } from 'react';
 import BannerImage from '../assets/abstract-cosmic-gravity-field-with-2-planets-vector.jpeg';
 
 export default function SideBar() {
-  useEffect(() => {});
+  const topic = (topic) => {
+    return (
+      <div className="topic__container">
+        <div className="hashtag">#</div>
+        <div className="topic__text">{topic}</div>
+      </div>
+    );
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar__top">
@@ -20,11 +27,16 @@ export default function SideBar() {
         </div>
         <div className="sidebar__stat">
           <p>Views on post</p>
-          <p>1,111</p>
+          <p>2,341</p>
         </div>
       </div>
       <div className="sidebar__bottom">
-        <p>Recent</p>
+        <h6>Followed Hashtags</h6>
+        {topic('react')}
+        {topic('webdevelopment')}
+        {topic('softwareengineering')}
+        {topic('fullstack')}
+        {topic('fuckoff')}
       </div>
     </div>
   );

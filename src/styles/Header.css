@@ -8,9 +8,9 @@
 }
 .header__container {
   max-width: var(--max-width);
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
   margin: 0 auto;
 }
 .header__left {
@@ -24,7 +24,6 @@
 
 .header__right {
   display: flex;
-  margin-right: -10px;
 }
 
 .header__search {

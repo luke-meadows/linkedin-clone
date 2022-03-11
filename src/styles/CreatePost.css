@@ -1,0 +1,46 @@
+.create__post {
+  padding: 10px;
+  border: 1px solid lightgray;
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.create__post__top {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.create__post__top > input {
+  margin-left: 10px;
+  border-radius: 20px;
+  border: 1px solid gray;
+  outline: none;
+  padding: 0 10px;
+  font-weight: 600;
+  width: 100%;
+}
+.create__post__bottom {
+  display: flex;
+}
+.post__icon {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  padding: 5px;
+}
+.post__icon:hover {
+  background: lightgray;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.post__icon > svg {
+  margin-right: 5px;
+}
+
+.post__icon > p {
+  font-weight: bold;
+  font-size: 12px;
+  color: gray;
+}

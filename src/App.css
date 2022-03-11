@@ -3,6 +3,5 @@
   display: flex;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 20% 60% 20%;
-  column-gap: 10px;
+  grid-template-columns: 20% 55% 25%;
 }
