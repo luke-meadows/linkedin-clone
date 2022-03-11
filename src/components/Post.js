@@ -5,18 +5,29 @@ import ShareIcon from '@mui/icons-material/IosShare';
 import SendIcon from '@mui/icons-material/Send';
 import { Avatar } from '@mui/material';
 
-export default function Post({ text, image, video, account, comments }) {
+export default function Post({ text, image, video, account, likes, comments }) {
   return (
     <div className="post">
       <div className="post__header">
         <Avatar />
         <div className="post__account__info">
-          <h6>Luke Meadows</h6>
+          <h6>{account}</h6>
           <p>10 followers</p>
+          <p>3 mins ago</p>
         </div>
       </div>
-      {image && <img src={image} />}
-      <p>This is a proper sick post mate</p>
+      {image && <img className="post__image" src={image} />}
+
+      <p className="post__body">{text}</p>
+      <div className="post__interaction">
+        <div className="post__likes">
+          <ThumbUpIcon />
+          <p>{likes}</p>
+        </div>
+        <div className="post__comments">
+          <p>{comments} comments</p>
+        </div>
+      </div>
       <div className="post__icons">
         <div className="icon__container">
           <ThumbUpIcon />
