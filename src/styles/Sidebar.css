@@ -34,7 +34,8 @@
   object-fit: cover;
 }
 .sidebar__top > h2 {
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 600;
   margin-top: 20px;
 }
 .sidebar__top > h6 {
@@ -89,7 +90,7 @@
 }
 .topic__container:hover {
   cursor: pointer;
-  background: whitesmoke;
+  background: lightgray;
   color: black;
 }
 .hashtag {

@@ -3,6 +3,7 @@ import Header from './components/Header';
 import SideBar from './components/SideBar';
 import db from '../src/db/firebase';
 import Feed from './components/Feed';
+import NewsWidget from './components/NewsWidget';
 function App() {
   return (
     <div className="app">
@@ -10,16 +11,7 @@ function App() {
       <div className="app__body">
         <SideBar />
         <Feed />
-        <p
-          style={{
-            margin: ' 15px 0',
-            border: ' 1px solid lightgray',
-          }}
-        >
-          Widgets
-        </p>
-        {/* Feed */}
-        {/* Widgets */}
+        <NewsWidget />
       </div>
     </div>
   );

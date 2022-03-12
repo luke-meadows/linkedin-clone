@@ -19,11 +19,12 @@
 
 .post__account__info > h6 {
   font-size: 14px;
+  font-weight: 600;
 }
 .post__account__info > p {
   font-size: 12px;
   color: gray;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .post__image {

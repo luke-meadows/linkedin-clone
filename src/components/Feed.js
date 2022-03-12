@@ -16,6 +16,12 @@ export default function Feed() {
         comments="Loads of"
       />
       <Post
+        text="Looking to finish the design off today for my Linkedin clone website. Then I will start mapping out the structure of the database."
+        account="Luke Meadows"
+        likes="Bare"
+        comments="Loads of"
+      />
+      <Post
         text="A client project for an events company"
         image={above}
         account="Luke Meadows"
