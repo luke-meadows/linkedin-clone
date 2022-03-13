@@ -1,18 +1,37 @@
 import './App.css';
 import Header from './components/Header';
 import SideBar from './components/SideBar';
-import db from '../src/db/firebase';
 import Feed from './components/Feed';
 import NewsWidget from './components/NewsWidget';
+import Login from './components/Login';
+import { auth } from './db/firebase';
+import { useEffect, useState } from 'react';
 function App() {
+  const [loggedIn, setLoggedIn] = useState();
+
+  function logout() {
+    auth
+      .signOut()
+      .then(() => {
+        console.log('Sign-out successful.');
+        setLoggedIn(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <div className="app">
       <Header />
-      <div className="app__body">
-        <SideBar />
-        <Feed />
-        <NewsWidget />
-      </div>
+      {!loggedIn && <Login setLoggedIn={setLoggedIn} />}
+      {loggedIn && (
+        <div className="app__body">
+          <SideBar logout={logout} />
+          <Feed />
+          <NewsWidget />
+        </div>
+      )}
     </div>
   );
 }

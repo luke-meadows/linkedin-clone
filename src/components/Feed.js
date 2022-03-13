@@ -4,7 +4,31 @@ import Post from './Post';
 import portfolio from '../assets/portfolio.png';
 import above from '../assets/above.png';
 import roller from '../assets/roller.png';
+import { useEffect, useState } from 'react';
+import { db } from '../db/firebase';
+
 export default function Feed() {
+  const [posts, setPosts] = useState([]);
+
+  const postsRef = db.collection('posts');
+  var testPosts = postsRef.where('body', '==', 'test');
+
+  useEffect(() => {
+    testPosts.get().then((snapshot) => {
+      snapshot.forEach((shot) => console.log());
+    });
+    // db.collection('posts').onSnapshot((snapshot) => {
+    //   setPosts(
+    //     snapshot.docs.map((doc) => {
+    //       return {
+    //         id: doc.id,
+    //         data: doc.data(),
+    //       };
+    //     })
+    //   );
+    // });
+  }, []);
+
   return (
     <div className="feed__container">
       <CreatePost />

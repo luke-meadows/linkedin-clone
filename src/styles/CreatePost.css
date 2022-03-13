@@ -11,8 +11,16 @@
   align-items: center;
   margin-bottom: 10px;
 }
+.create__post__top > svg {
+  font-size: 50px;
+  color: gray;
+}
 
-.create__post__top > input {
+.create__post__top > form {
+  width: 100%;
+  display: flex;
+}
+.create__post__top > form > input {
   margin-left: 10px;
   border-radius: 25px;
   border: 1px solid gray;
@@ -20,6 +28,7 @@
   padding: 16px 10px;
   font-weight: 600;
   width: 100%;
+  font-size: 14px;
 }
 .create__post__bottom {
   display: flex;
@@ -42,6 +51,6 @@
 
 .post__icon > p {
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
   color: gray;
 }

@@ -2,7 +2,7 @@ import '../styles/Sidebar.css';
 import { Avatar } from '@mui/material';
 import BannerImage from '../assets/abstract-cosmic-gravity-field-with-2-planets-vector.jpeg';
 
-export default function SideBar() {
+export default function SideBar({ logout }) {
   const topic = (topic) => {
     return (
       <div className="topic__container">
@@ -16,7 +16,7 @@ export default function SideBar() {
     <div className="sidebar">
       <div className="sidebar__top">
         <img src={BannerImage} alt="" />
-        <Avatar />
+        <Avatar sx={{ height: '60px', width: '60px' }} />
         <h2>Welcome, Luke!</h2>
         <h6>hello@lukemeadows.dev</h6>
       </div>
@@ -36,8 +36,8 @@ export default function SideBar() {
         {topic('webdevelopment')}
         {topic('softwareengineering')}
         {topic('fullstack')}
-        {topic('fuckoff')}
       </div>
+      <button onClick={logout}>logout</button>
     </div>
   );
 }
