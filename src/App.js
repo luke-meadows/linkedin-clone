@@ -5,16 +5,18 @@ import Feed from './components/Feed';
 import NewsWidget from './components/NewsWidget';
 import Login from './components/Login';
 import { auth } from './db/firebase';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../src/features/userSlice';
+import { logout } from './features/userSlice';
+
 function App() {
   const user = useSelector(selectUser);
-
-  function logout() {
+  const dispatch = useDispatch();
+  function signOut() {
     auth
       .signOut()
       .then(() => {
-        console.log('Sign-out successful.');
+        dispatch(logout());
       })
       .catch((error) => {
         console.log(error);
@@ -24,11 +26,10 @@ function App() {
   return (
     <div className="app">
       <Header />
-      {!user ? (
-        <Login />
-      ) : (
+      {!user && <Login />}
+      {user && (
         <div className="app__body">
-          <SideBar logout={logout} />
+          <SideBar logout={signOut} />
           <Feed />
           <NewsWidget />
         </div>
