@@ -6,8 +6,9 @@ import NewsWidget from './components/NewsWidget';
 import Login from './components/Login';
 import { auth } from './db/firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../src/features/userSlice';
-import { logout } from './features/userSlice';
+import { logout, login, selectUser } from '../src/features/userSlice';
+// import { logout, login, selectUser } from './features/userSlice';
+import { useEffect } from 'react';
 
 function App() {
   const user = useSelector(selectUser);
@@ -23,11 +24,28 @@ function App() {
       });
   }
 
+  useEffect(() => {
+    auth.onAuthStateChanged((userCredential) => {
+      if (userCredential) {
+        console.log(userCredential.displayName);
+        dispatch(
+          login({
+            email: userCredential.email,
+            uid: userCredential.uid,
+            displayName: userCredential.displayName,
+          })
+        );
+      } else {
+        dispatch(logout());
+      }
+    });
+  }, []);
+
   return (
     <div className="app">
       <Header />
       {!user && <Login />}
-      {user && (
+      {user?.email && (
         <div className="app__body">
           <SideBar logout={signOut} />
           <Feed />

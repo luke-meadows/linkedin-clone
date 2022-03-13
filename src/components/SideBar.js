@@ -1,8 +1,11 @@
 import '../styles/Sidebar.css';
 import { Avatar } from '@mui/material';
 import BannerImage from '../assets/abstract-cosmic-gravity-field-with-2-planets-vector.jpeg';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 
 export default function SideBar({ logout }) {
+  const user = useSelector(selectUser);
   const topic = (topic) => {
     return (
       <div className="topic__container">
@@ -17,8 +20,8 @@ export default function SideBar({ logout }) {
       <div className="sidebar__top">
         <img src={BannerImage} alt="" />
         <Avatar sx={{ height: '60px', width: '60px' }} />
-        <h2>Welcome, Luke!</h2>
-        <h6>hello@lukemeadows.dev</h6>
+        <h2>Welcome, {user.displayName.split(' ')[0]}!</h2>
+        <h6>{user.email}</h6>
       </div>
       <div className="sidebar__stats">
         <div className="sidebar__stat">

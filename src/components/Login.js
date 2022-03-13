@@ -1,23 +1,27 @@
+import '../styles/Login.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { auth } from '../db/firebase';
 import { login } from '../features/userSlice';
 
 export default function Login() {
+  const [loginOrSignup, setLoginOrSignup] = useState('login');
+  const [error, setError] = useState(null);
   const [loginDetails, setLoginDetails] = useState({
+    name: '',
     email: '',
     password: '',
   });
   const dispatch = useDispatch();
 
-  const signUp = (e) => {
+  function signUp(e) {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(loginDetails.email, loginDetails.password)
       .then((userCredential) => {
         userCredential.user
           .updateProfile({
-            displayName: loginDetails.email,
+            displayName: loginDetails.name,
           })
           .then(() => {
             dispatch(
@@ -27,13 +31,13 @@ export default function Login() {
                 displayName: userCredential.user.displayName,
               })
             );
-          })
-          .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
           });
+      })
+      .catch((error) => {
+        var errorMessage = error.message;
+        setError(errorMessage);
       });
-  };
+  }
 
   function signIn(e) {
     e.preventDefault();
@@ -49,67 +53,119 @@ export default function Login() {
         );
       })
       .catch((error) => {
-        var errorCode = error.code;
         var errorMessage = error.message;
+        setError(errorMessage);
       });
   }
 
   return (
-    <div>
-      <h1>Sign up</h1>
+    <div className="login">
+      {loginOrSignup === 'signup' && (
+        <>
+          <h2 className="login__greeting">Get started</h2>
+          <form action="submit" onSubmit={signUp}>
+            <input
+              className="login__input"
+              type="text"
+              name="name"
+              value={loginDetails.name}
+              onChange={(e) =>
+                setLoginDetails({
+                  ...loginDetails,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
+            <input
+              className="login__input"
+              type="email"
+              name="email"
+              value={loginDetails.email}
+              onChange={(e) =>
+                setLoginDetails({
+                  ...loginDetails,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
+            <input
+              className="login__input"
+              type="password"
+              name="password"
+              value={loginDetails.password}
+              onChange={(e) =>
+                setLoginDetails({
+                  ...loginDetails,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
+            <button className="login__button" type="submit">
+              submit
+            </button>
+          </form>
+          {error && <p className="login__error">{error}</p>}
+          <p className="signup__invitation">
+            Already got an account?{' '}
+            <button
+              onClick={() => setLoginOrSignup('login')}
+              className="signup__button"
+            >
+              {' '}
+              Sign in
+            </button>
+          </p>
+        </>
+      )}
 
-      <form action="submit" onSubmit={signUp}>
-        <input
-          type="email"
-          name="email"
-          value={loginDetails.email}
-          onChange={(e) =>
-            setLoginDetails({
-              ...loginDetails,
-              [e.target.name]: e.target.value,
-            })
-          }
-        />
-        <input
-          type="password"
-          name="password"
-          value={loginDetails.password}
-          onChange={(e) =>
-            setLoginDetails({
-              ...loginDetails,
-              [e.target.name]: e.target.value,
-            })
-          }
-        />
-        <button type="submit">submit</button>
-      </form>
+      {loginOrSignup === 'login' && (
+        <>
+          <h2 className="login__greeting">Welcome Back</h2>
+          <form action="submit" onSubmit={signIn}>
+            <input
+              className="login__input"
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={loginDetails.email}
+              onChange={(e) =>
+                setLoginDetails({
+                  ...loginDetails,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
+            <input
+              className="login__input"
+              type="password"
+              name="password"
+              placeholder="password"
+              value={loginDetails.password}
+              onChange={(e) =>
+                setLoginDetails({
+                  ...loginDetails,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
+            <button className="login__button" type="submit">
+              Continue
+            </button>
+          </form>
+          {error && <p className="login__error">{error}</p>}
 
-      <h1>Login</h1>
-      <form action="submit" onSubmit={signIn}>
-        <input
-          type="email"
-          name="email"
-          value={loginDetails.email}
-          onChange={(e) =>
-            setLoginDetails({
-              ...loginDetails,
-              [e.target.name]: e.target.value,
-            })
-          }
-        />
-        <input
-          type="password"
-          name="password"
-          value={loginDetails.password}
-          onChange={(e) =>
-            setLoginDetails({
-              ...loginDetails,
-              [e.target.name]: e.target.value,
-            })
-          }
-        />
-        <button type="submit">submit</button>
-      </form>
+          <p className="signup__invitation">
+            Not got an account?{' '}
+            <button
+              onClick={() => setLoginOrSignup('signup')}
+              className="signup__button"
+            >
+              {' '}
+              Sign up
+            </button>
+          </p>
+        </>
+      )}
     </div>
   );
 }
