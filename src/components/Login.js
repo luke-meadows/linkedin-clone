@@ -1,43 +1,56 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { auth } from '../db/firebase';
-export default function Login({ setLoggedIn }) {
+import { login } from '../features/userSlice';
+
+export default function Login() {
   const [loginDetails, setLoginDetails] = useState({
     email: '',
     password: '',
   });
+  const dispatch = useDispatch();
 
-  const user = auth.currentUser;
-
-  function signUp(e) {
+  const signUp = (e) => {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(loginDetails.email, loginDetails.password)
       .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        setLoggedIn(true);
-        // ...
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        userCredential.user
+          .updateProfile({
+            displayName: loginDetails.email,
+          })
+          .then(() => {
+            dispatch(
+              login({
+                email: userCredential.user.email,
+                uid: userCredential.user.uid,
+                displayName: userCredential.user.displayName,
+              })
+            );
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+          });
       });
-  }
-  function login(e) {
-    e.preventDefault();
+  };
 
+  function signIn(e) {
+    e.preventDefault();
     auth
       .signInWithEmailAndPassword(loginDetails.email, loginDetails.password)
       .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        setLoggedIn(true);
-        // ...
+        dispatch(
+          login({
+            email: userCredential.user.email,
+            uid: userCredential.user.uid,
+            displayName: userCredential.user.displayName,
+          })
+        );
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode);
       });
   }
 
@@ -72,7 +85,7 @@ export default function Login({ setLoggedIn }) {
       </form>
 
       <h1>Login</h1>
-      <form action="submit" onSubmit={login}>
+      <form action="submit" onSubmit={signIn}>
         <input
           type="email"
           name="email"

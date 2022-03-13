@@ -5,16 +5,16 @@ import Feed from './components/Feed';
 import NewsWidget from './components/NewsWidget';
 import Login from './components/Login';
 import { auth } from './db/firebase';
-import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../src/features/userSlice';
 function App() {
-  const [loggedIn, setLoggedIn] = useState();
+  const user = useSelector(selectUser);
 
   function logout() {
     auth
       .signOut()
       .then(() => {
         console.log('Sign-out successful.');
-        setLoggedIn(false);
       })
       .catch((error) => {
         console.log(error);
@@ -24,8 +24,9 @@ function App() {
   return (
     <div className="app">
       <Header />
-      {!loggedIn && <Login setLoggedIn={setLoggedIn} />}
-      {loggedIn && (
+      {!user ? (
+        <Login />
+      ) : (
         <div className="app__body">
           <SideBar logout={logout} />
           <Feed />
