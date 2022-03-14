@@ -1,7 +1,7 @@
 import '../styles/Login.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { auth } from '../db/firebase';
+import { auth, db } from '../db/firebase';
 import { login } from '../features/userSlice';
 
 export default function Login() {
@@ -19,9 +19,15 @@ export default function Login() {
     auth
       .createUserWithEmailAndPassword(loginDetails.email, loginDetails.password)
       .then((userCredential) => {
-        userCredential.user
-          .updateProfile({
-            displayName: loginDetails.name,
+        userCredential.user.updateProfile({
+          displayName: loginDetails.name,
+        });
+        // create user in firestore
+        db.collection('users')
+          .doc(auth.currentUser.uid)
+          .set({
+            name: loginDetails.name,
+            email: loginDetails.email,
           })
           .then(() => {
             dispatch(

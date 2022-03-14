@@ -20,7 +20,7 @@ export default function SideBar({ logout }) {
       <div className="sidebar__top">
         <img src={BannerImage} alt="" />
         <Avatar sx={{ height: '60px', width: '60px' }} />
-        <h2>Welcome, {user.displayName.split(' ')[0]}!</h2>
+        <h2>Welcome, {user.displayName}!</h2>
         <h6>{user.email}</h6>
       </div>
       <div className="sidebar__stats">
