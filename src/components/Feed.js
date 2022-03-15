@@ -14,9 +14,9 @@ export default function Feed() {
   var testPosts = postsRef.where('body', '==', 'test');
 
   useEffect(() => {
-    testPosts.get().then((snapshot) => {
-      snapshot.forEach((shot) => console.log());
-    });
+    // testPosts.get().then((snapshot) => {
+    //   snapshot.forEach((shot) => console.log());
+    // });
     // db.collection('posts').onSnapshot((snapshot) => {
     //   setPosts(
     //     snapshot.docs.map((doc) => {

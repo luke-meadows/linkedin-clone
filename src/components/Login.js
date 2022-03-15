@@ -14,21 +14,24 @@ export default function Login() {
   });
   const dispatch = useDispatch();
 
+  // Sign up
   function signUp(e) {
     e.preventDefault();
+    // Create User in Auth
     auth
       .createUserWithEmailAndPassword(loginDetails.email, loginDetails.password)
       .then((userCredential) => {
         userCredential.user.updateProfile({
           displayName: loginDetails.name,
         });
-        // create user in firestore
+        // create user in Firestore
         db.collection('users')
           .doc(auth.currentUser.uid)
           .set({
             name: loginDetails.name,
             email: loginDetails.email,
           })
+          // Save user info to redux
           .then(() => {
             dispatch(
               login({
@@ -47,14 +50,18 @@ export default function Login() {
 
   function signIn(e) {
     e.preventDefault();
+    // Log in
     auth
       .signInWithEmailAndPassword(loginDetails.email, loginDetails.password)
       .then((userCredential) => {
+        console.log(userCredential);
+        // Save user info to redux
         dispatch(
           login({
             email: userCredential.user.email,
             uid: userCredential.user.uid,
             displayName: userCredential.user.displayName,
+            profileImage: userCredential.user.photoURL || null,
           })
         );
       })

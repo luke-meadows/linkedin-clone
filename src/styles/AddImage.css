@@ -1,0 +1,68 @@
+.add__image__outer__modal {
+  position: absolute;
+  height: calc(100vh - 65px);
+  width: 100%;
+  top: 63px;
+  left: 0;
+  background: #c9c9c97e;
+}
+.add__image__inner__modal {
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  top: 50%;
+  left: 50%;
+  padding: 30px;
+  min-width: 500px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0px 24px 0 #00000033;
+}
+
+.add__image__inner__modal > h3 {
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.add__image__inner__modal > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.image__preview {
+  margin-bottom: 15px;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  margin: 0 auto;
+  border: 1px solid lightgray;
+}
+.upload__buttons__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0 0 0;
+}
+.file__upload__button {
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 40%;
+  padding: 10px;
+  height: fit-content;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.upload__buttons__container > button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+  border-radius: 30px;
+  padding: 10px;
+  font-size: 18px;
+  background: #2e67c2;
+  color: white;
+  width: 50%;
+}

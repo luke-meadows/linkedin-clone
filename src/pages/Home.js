@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 export default function Home() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
+  // Sign out
   function signOut() {
     auth
       .signOut()
@@ -20,23 +22,6 @@ export default function Home() {
         console.log(error);
       });
   }
-
-  useEffect(() => {
-    auth.onAuthStateChanged((userCredential) => {
-      if (userCredential) {
-        console.log(userCredential.displayName);
-        dispatch(
-          login({
-            email: userCredential.email,
-            uid: userCredential.uid,
-            displayName: userCredential.displayName,
-          })
-        );
-      } else {
-        dispatch(logout());
-      }
-    });
-  }, []);
 
   return (
     <div>
