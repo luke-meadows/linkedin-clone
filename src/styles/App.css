@@ -3,5 +3,11 @@
   display: flex;
   margin: 0 auto;
   display: grid;
+  margin-top: 15px;
+}
+.home__grid {
   grid-template-columns: 20% 55% 25%;
+}
+.profile__grid {
+  grid-template-columns: 60% 40%;
 }

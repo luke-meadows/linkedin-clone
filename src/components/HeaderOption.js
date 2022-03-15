@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import '../styles/HeaderOption.css';
-export default function HeaderOption({ Icon, header, avatar }) {
+export default function HeaderOption({ Icon, header, avatar, url }) {
   return (
-    <div className="Header__Option">
+    <Link to={url} className="Header__Option">
       {Icon && <Icon />}
       {avatar && <img src={avatar} />}
       <h3>{header}</h3>
-    </div>
+    </Link>
   );
 }

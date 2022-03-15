@@ -2,6 +2,7 @@
   color: gray;
   text-align: center;
   margin: 0 10px;
+  text-decoration: none;
 }
 
 .Header__Option:hover {

@@ -16,10 +16,13 @@
 .header__left {
   display: flex;
 }
-.header__left > img {
-  object-fit: contain;
+.header__left > a {
   height: 40px;
+}
+.header__left > a > img {
+  object-fit: contain;
   margin-right: 10px;
+  height: 40px;
 }
 
 .header__right {

@@ -42,7 +42,7 @@ export default function Home() {
     <div>
       {!user && <Login />}
       {user?.email && (
-        <div className="app__body">
+        <div className="app__body home__grid">
           <SideBar logout={signOut} />
           <Feed />
           <NewsWidget />
