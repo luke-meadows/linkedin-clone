@@ -6,7 +6,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { Avatar } from '@mui/material';
 import { db } from '../db/firebase';
 import { useEffect, useState } from 'react';
-export default function Post({ text, image, likes, comments, userId }) {
+export default function Post({ text, image, likes, comments, userId, time }) {
   // Set state for user information to be put onto post
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function Post({ text, image, likes, comments, userId }) {
             <div className="post__account__info">
               <h6>{user.username}</h6>
               <p>10 followers</p>
-              <p>3 mins ago</p>
+              <p>{time}</p>
             </div>
           </div>
           {image && <img className="post__image" src={image} />}
