@@ -2,44 +2,42 @@ import '../styles/Feed.css';
 import CreatePost from './CreatePost';
 import Post from './Post';
 import portfolio from '../assets/portfolio.png';
-import above from '../assets/above.png';
-import roller from '../assets/roller.png';
 import { useEffect, useState } from 'react';
 import { db } from '../db/firebase';
+import { logRoles } from '@testing-library/react';
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
 
-  const postsRef = db.collection('posts');
-  var testPosts = postsRef.where('body', '==', 'test');
-
   useEffect(() => {
-    // testPosts.get().then((snapshot) => {
-    //   snapshot.forEach((shot) => console.log());
-    // });
-    // db.collection('posts').onSnapshot((snapshot) => {
-    //   setPosts(
-    //     snapshot.docs.map((doc) => {
-    //       return {
-    //         id: doc.id,
-    //         data: doc.data(),
-    //       };
-    //     })
-    //   );
-    // });
+    db.collection('posts').onSnapshot((snapshot) => {
+      setPosts(
+        snapshot.docs.map((doc) => {
+          return {
+            id: doc.id,
+            data: doc.data(),
+          };
+        })
+      );
+    });
   }, []);
 
   return (
     <div className="feed__container">
       <CreatePost />
-      <Post
-        text="My Portfolio, check it out!"
-        image={portfolio}
-        account="Luke Meadows"
-        likes="Bare"
-        comments="Loads of"
-      />
-      <Post
+      {posts.map((post, key) => {
+        return (
+          <Post
+            key={key}
+            text={post.data.content}
+            image={portfolio}
+            userId={post.data.userId}
+            likes={post.data.likeCount}
+            comments={post.data.commentCount}
+          />
+        );
+      })}
+      {/* <Post
         text="Looking to finish the design off today for my Linkedin clone website. Then I will start mapping out the structure of the database."
         account="Luke Meadows"
         likes="Bare"
@@ -58,7 +56,7 @@ export default function Feed() {
         account="Luke Meadows"
         likes="Bare"
         comments="Loads of"
-      />
+      /> */}
     </div>
   );
 }

@@ -1,20 +1,26 @@
 import '../styles/CreatePost.css';
 import ImageIcon from '@mui/icons-material/Image';
 import VideoIcon from '@mui/icons-material/SlowMotionVideo';
-import { Avatar } from '@mui/material';
 import { useState } from 'react';
 import { db } from '../db/firebase';
+import firebase from 'firebase';
 import ProfileImage from './ProfileImage';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 export default function CreatePost() {
+  const user = useSelector(selectUser);
   const [post, setPost] = useState('');
   function handlePostSubmit(e) {
     e.preventDefault();
-    console.log('submitted');
-
-    db.collection('posts').add({
-      name: 'Luke Meadows',
-      body: 'not a test',
+    const postsRef = db.collection('posts');
+    postsRef.doc().set({
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      likeCount: 0,
+      commentCount: 0,
+      userId: user.uid,
+      content: post,
     });
+    setPost('');
   }
 
   return (
