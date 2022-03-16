@@ -4,6 +4,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 import ShareIcon from '@mui/icons-material/IosShare';
 import SendIcon from '@mui/icons-material/Send';
 import { Avatar } from '@mui/material';
+import ProfileImage from './ProfileImage';
 
 export default function Post({ text, image, video, account, likes, comments }) {
   return (

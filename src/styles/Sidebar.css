@@ -12,17 +12,23 @@
 
 .sidebar__top {
   background: white;
-  border: 1px solid lightgray;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 60px;
+  padding-top: 70px;
 }
 
-.sidebar__top > img {
+.sidebar__profile__img {
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.sidebar__top__banner {
   position: absolute;
   width: 100%;
   height: 45%;
@@ -44,7 +50,6 @@
 }
 
 .sidebar__stats {
-  border: 1px solid lightgray;
   border-top: none;
   background: white;
   border-bottom-left-radius: 9px;

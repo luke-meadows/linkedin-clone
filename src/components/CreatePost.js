@@ -4,6 +4,7 @@ import VideoIcon from '@mui/icons-material/SlowMotionVideo';
 import { Avatar } from '@mui/material';
 import { useState } from 'react';
 import { db } from '../db/firebase';
+import ProfileImage from './ProfileImage';
 export default function CreatePost() {
   const [post, setPost] = useState('');
   function handlePostSubmit(e) {
@@ -19,7 +20,7 @@ export default function CreatePost() {
   return (
     <div className="create__post">
       <div className="create__post__top">
-        <Avatar />
+        <ProfileImage />
         <form onSubmit={handlePostSubmit}>
           <input
             type="text"

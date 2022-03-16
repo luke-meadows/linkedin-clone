@@ -4,19 +4,21 @@
   width: 100%;
   top: 63px;
   left: 0;
-  background: #c9c9c97e;
+  background: #6c6c6cb3;
+  z-index: 2;
 }
 .add__image__inner__modal {
   position: absolute;
   background: white;
   border-radius: 10px;
   border: 1px solid lightgray;
-  top: 50%;
+  top: 30%;
   left: 50%;
   padding: 30px;
   min-width: 500px;
   transform: translate(-50%, -50%);
   box-shadow: 0 0px 24px 0 #00000033;
+  z-index: 2;
 }
 
 .add__image__inner__modal > h3 {

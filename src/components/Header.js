@@ -13,17 +13,16 @@ export default function Header() {
       <div className="header__container">
         <div className="header__left">
           <Link to="/">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-              alt=""
-            />
+            <h1 className="logo">
+              Tattle<span>.</span>
+            </h1>
           </Link>
+        </div>
+        <div className="header__right">
           <div className="header__search">
             <SearchIcon />
             <input type="text" placeholder="Search" />
           </div>
-        </div>
-        <div className="header__right">
           <HeaderOption Icon={HomeIcon} url="/" header="Home" />
           <HeaderOption Icon={NetworkIcon} url="/" header="Network" />
           <HeaderOption Icon={MessageIcon} url="/" header="Messaging" />

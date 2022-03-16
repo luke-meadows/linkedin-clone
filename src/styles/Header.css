@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;800;900&display=swap');
 .header {
   position: sticky;
   top: 0;
@@ -18,11 +19,20 @@
 }
 .header__left > a {
   height: 40px;
+  text-decoration: none;
+  color: black;
+  margin-right: 15px;
 }
 .header__left > a > img {
   object-fit: contain;
-  margin-right: 10px;
   height: 40px;
+}
+
+.logo {
+  font-family: 'Montserrat', sans-serif;
+}
+.logo > span {
+  color: #8f8fff;
 }
 
 .header__right {
@@ -37,6 +47,7 @@
   height: 22px;
   color: grey;
   background: #eef3f8;
+  margin: 0 10px;
 }
 
 .header__search > input {
