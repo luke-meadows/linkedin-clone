@@ -8,7 +8,8 @@ export default function Login() {
   const [loginOrSignup, setLoginOrSignup] = useState('login');
   const [error, setError] = useState(null);
   const [loginDetails, setLoginDetails] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
@@ -22,14 +23,17 @@ export default function Login() {
       .createUserWithEmailAndPassword(loginDetails.email, loginDetails.password)
       .then((userCredential) => {
         userCredential.user.updateProfile({
-          displayName: loginDetails.name,
+          displayName: loginDetails.firstName,
         });
         // create user in Firestore
         db.collection('users')
           .doc(auth.currentUser.uid)
           .set({
-            name: loginDetails.name,
+            firstName: loginDetails.firstName,
+            lastName: loginDetails.lastName,
             email: loginDetails.email,
+            userId: auth.currentUser.uid,
+            username: loginDetails.firstName + ' ' + loginDetails.lastName,
           })
           // Save user info to redux
           .then(() => {
@@ -37,7 +41,7 @@ export default function Login() {
               login({
                 email: userCredential.user.email,
                 uid: userCredential.user.uid,
-                displayName: userCredential.user.displayName,
+                displayName: loginDetails.firstName,
               })
             );
           });
@@ -54,7 +58,6 @@ export default function Login() {
     auth
       .signInWithEmailAndPassword(loginDetails.email, loginDetails.password)
       .then((userCredential) => {
-        console.log(userCredential);
         // Save user info to redux
         dispatch(
           login({
@@ -80,8 +83,22 @@ export default function Login() {
             <input
               className="login__input"
               type="text"
-              name="name"
-              value={loginDetails.name}
+              name="firstName"
+              value={loginDetails.firstName}
+              placeholder="First name"
+              onChange={(e) =>
+                setLoginDetails({
+                  ...loginDetails,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
+            <input
+              className="login__input"
+              type="text"
+              name="lastName"
+              placeholder="Last name"
+              value={loginDetails.lastName}
               onChange={(e) =>
                 setLoginDetails({
                   ...loginDetails,
@@ -114,7 +131,7 @@ export default function Login() {
               }
             />
             <button className="login__button" type="submit">
-              submit
+              Submit
             </button>
           </form>
           {error && <p className="login__error">{error}</p>}

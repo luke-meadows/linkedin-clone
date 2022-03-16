@@ -7,6 +7,7 @@ import { auth } from './db/firebase';
 import { useDispatch } from 'react-redux';
 import { login, logout } from './features/userSlice';
 import { useEffect } from 'react';
+import Test from './pages/Test';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </div>
   );

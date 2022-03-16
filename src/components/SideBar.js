@@ -35,7 +35,7 @@ export default function SideBar({ logout }) {
           ) : (
             <Avatar
               className="sidebar__profile__img"
-              style={{ width: '100px', height: '100px' }}
+              style={{ width: '50px', height: '50px', cursor: 'pointer' }}
               onClick={() => setShowProfileImageModal(!showProfileImageModal)}
             />
           )}

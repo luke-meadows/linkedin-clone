@@ -66,9 +66,12 @@ export default function useAddProfileImage() {
         photoURL: URL,
       });
       // Update the users collection with profile img.
-      db.collection('users').doc(auth.currentUser.uid).set({
-        profilePic: URL,
-      });
+      db.collection('users').doc(auth.currentUser.uid).set(
+        {
+          profilePic: URL,
+        },
+        { merge: true }
+      );
       // Update redux state with new img and perform rerender.
       dispatch(changeProfileImg(URL));
       setLoading(false);

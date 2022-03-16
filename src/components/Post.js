@@ -8,7 +8,7 @@ import { db } from '../db/firebase';
 import { useEffect, useState } from 'react';
 export default function Post({ text, image, likes, comments, userId, time }) {
   // Set state for user information to be put onto post
-  const [user, setUser] = useState(null);
+  const [postOwner, setPostOwner] = useState(null);
   useEffect(() => {
     // Fetch the user data (name and profile image) from the user collection using userID
     db.collection('users')
@@ -16,8 +16,7 @@ export default function Post({ text, image, likes, comments, userId, time }) {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          setUser(doc.data());
-          console.log(doc.data());
+          setPostOwner(doc.data());
         });
       })
       .catch((error) => {
@@ -26,18 +25,18 @@ export default function Post({ text, image, likes, comments, userId, time }) {
   }, []);
 
   return (
-    <div className="post">
-      {!user && (
-        <div className="post__header">
-          <h6>Loading...</h6>
-        </div>
-      )}
-      {user && (
-        <>
+    <>
+      {!postOwner && <div />}
+      {postOwner && (
+        <div className="post">
           <div className="post__header">
-            <Avatar />
+            {postOwner.profilePic ? (
+              <img className="post__profile__pic" src={postOwner.profilePic} />
+            ) : (
+              <Avatar />
+            )}
             <div className="post__account__info">
-              <h6>{user.username}</h6>
+              <h6>{postOwner.username}</h6>
               <p>10 followers</p>
               <p>{time}</p>
             </div>
@@ -72,8 +71,8 @@ export default function Post({ text, image, likes, comments, userId, time }) {
               <p>Send</p>
             </div>
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }

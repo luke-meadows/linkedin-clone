@@ -4,7 +4,6 @@ import Post from './Post';
 import portfolio from '../assets/portfolio.png';
 import { useEffect, useState } from 'react';
 import { db } from '../db/firebase';
-import { logRoles } from '@testing-library/react';
 import { calculatePostTime } from '../lib/calculatePostTime';
 
 export default function Feed() {
@@ -22,7 +21,7 @@ export default function Feed() {
       );
     });
   }, []);
-
+  console.log(posts);
   return (
     <div className="feed__container">
       <CreatePost />
@@ -30,13 +29,12 @@ export default function Feed() {
       {posts &&
         posts.map((post, key) => {
           const { data } = post;
-          console.log(data.createdAt);
           const time = calculatePostTime(data.createdAt);
           return (
             <Post
               key={key}
               text={data.content}
-              image={portfolio}
+              image={data.content.includes('portfolio' ? portfolio : null)}
               userId={data.userId}
               likes={data.likeCount}
               comments={data.commentCount}

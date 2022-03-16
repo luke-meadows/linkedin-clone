@@ -27,6 +27,12 @@
   font-weight: 400;
 }
 
+.post__profile__pic {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
 .post__image {
   width: 100%;
   max-height: 300px;
