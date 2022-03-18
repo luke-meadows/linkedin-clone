@@ -15,9 +15,13 @@ export const userSlice = createSlice({
     changeProfileImg: (state, action) => {
       state.user.profilePic = action.payload;
     },
+    changeBannerImg: (state, action) => {
+      state.user.bannerPic = action.payload;
+    },
   },
 });
 
-export const { login, logout, changeProfileImg } = userSlice.actions;
+export const { login, logout, changeProfileImg, changeBannerImg } =
+  userSlice.actions;
 export const selectUser = (state) => state.user.user;
 export default userSlice.reducer;

@@ -4,8 +4,7 @@ import NewsWidget from '../components/NewsWidget';
 import Login from '../components/Login';
 import { auth } from '../db/firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, login, selectUser } from '../features/userSlice';
-import { useEffect } from 'react';
+import { logout, selectUser } from '../features/userSlice';
 
 export default function Home() {
   const user = useSelector(selectUser);

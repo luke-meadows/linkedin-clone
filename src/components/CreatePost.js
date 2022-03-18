@@ -2,27 +2,34 @@ import '../styles/CreatePost.css';
 import ImageIcon from '@mui/icons-material/Image';
 import VideoIcon from '@mui/icons-material/SlowMotionVideo';
 import { useState } from 'react';
-import { db } from '../db/firebase';
-import firebase from 'firebase';
 import ProfileImage from './ProfileImage';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
-export default function CreatePost() {
+import { uploadPost } from '../lib/uploadPost';
+export default function CreatePost({ posts, setPosts }) {
   const user = useSelector(selectUser);
   const [post, setPost] = useState('');
-  function handlePostSubmit(e) {
+
+  async function handlePostSubmit(e) {
     e.preventDefault();
-    const postsRef = db.collection('posts');
-    postsRef.doc().set({
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    const postData = {
       likeCount: 0,
       commentCount: 0,
       userId: user.uid,
       content: post,
-    });
+    };
+    await uploadPost(postData);
+    setPosts([
+      {
+        ...postData,
+        createdAt: {
+          seconds: new Date() / 1000,
+        },
+      },
+      ...posts,
+    ]);
     setPost('');
   }
-
   return (
     <div className="create__post">
       <div className="create__post__top">

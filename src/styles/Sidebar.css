@@ -18,14 +18,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 70px;
-}
-
-.sidebar__profile__img {
-  height: 80px;
-  width: 80px;
-  z-index: 1;
-  border-radius: 50%;
 }
 
 .sidebar__top__banner {
@@ -37,7 +29,25 @@
   border-top-right-radius: 9px;
   z-index: 0;
   object-fit: cover;
+  background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
 }
+.sidebar__top__banner > img {
+  height: 100%;
+  width: 100%;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+}
+
+.sidebar__profile__img {
+  height: 60px;
+  width: 60px;
+  z-index: 1;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin-top: 35px;
+}
+
 .sidebar__top > h2 {
   font-size: 16px;
   font-weight: 600;

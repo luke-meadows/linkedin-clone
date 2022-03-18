@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { auth, db } from '../db/firebase';
 import { login } from '../features/userSlice';
+import { getUser } from '../lib/getUser';
+import { getBannerImg } from '../lib/getBannerImg';
 
 export default function Login() {
   const [loginOrSignup, setLoginOrSignup] = useState('login');
@@ -57,14 +59,16 @@ export default function Login() {
     // Log in
     auth
       .signInWithEmailAndPassword(loginDetails.email, loginDetails.password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         // Save user info to redux
+        const bannerPic = await getBannerImg(userCredential.user.uid);
         dispatch(
           login({
             email: userCredential.user.email,
             uid: userCredential.user.uid,
             displayName: userCredential.user.displayName,
             profileImage: userCredential.user.photoURL || null,
+            bannerPic: bannerPic || null,
           })
         );
       })

@@ -17,14 +17,22 @@ export default function SideBar({ logout }) {
   };
 
   // Add user profile img hook
-  const { setShowProfileImageModal, showProfileImageModal, ProfileImageModal } =
-    useAddProfileImage();
+  const [setShowProfileImageModal, showProfileImageModal, ProfileImageModal] =
+    useAddProfileImage('profile');
+  const [setShowBannerImageModal, showBannerImageModal, BannerImageModal] =
+    useAddProfileImage('banner');
 
   return (
     <>
       <div className="sidebar">
         <div className="sidebar__top">
-          <img className="sidebar__top__banner" src={BannerImage} alt="" />
+          <div
+            className="sidebar__top__banner"
+            onClick={() => setShowBannerImageModal(!showBannerImageModal)}
+          >
+            {user.bannerPic && <img src={user.bannerPic} alt="" />}
+          </div>
+
           {user.profilePic ? (
             <img
               className="sidebar__profile__img"
@@ -35,7 +43,12 @@ export default function SideBar({ logout }) {
           ) : (
             <Avatar
               className="sidebar__profile__img"
-              style={{ width: '50px', height: '50px', cursor: 'pointer' }}
+              style={{
+                width: '60px',
+                height: '60px',
+                cursor: 'pointer',
+                border: '3px solid white',
+              }}
               onClick={() => setShowProfileImageModal(!showProfileImageModal)}
             />
           )}
@@ -62,6 +75,7 @@ export default function SideBar({ logout }) {
         <button onClick={logout}>logout</button>
       </div>
       {showProfileImageModal && <ProfileImageModal />}
+      {showBannerImageModal && <BannerImageModal />}
     </>
   );
 }

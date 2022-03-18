@@ -7,13 +7,16 @@ import { auth } from './db/firebase';
 import { useDispatch } from 'react-redux';
 import { login, logout } from './features/userSlice';
 import { useEffect } from 'react';
-import Test from './pages/Test';
+import Login from './components/Login';
+import { getBannerImg } from './lib/getBannerImg';
 
 function App() {
   const dispatch = useDispatch();
+
   // Persist login state
-  useEffect(() => {
-    auth.onAuthStateChanged((userCredential) => {
+  useEffect(async () => {
+    auth.onAuthStateChanged(async (userCredential) => {
+      const bannerPic = await getBannerImg(userCredential.uid);
       if (userCredential) {
         dispatch(
           login({
@@ -21,6 +24,7 @@ function App() {
             uid: userCredential.uid,
             displayName: userCredential.displayName,
             profilePic: userCredential.photoURL || '',
+            bannerPic: bannerPic || null,
           })
         );
       } else {
@@ -35,7 +39,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/test" element={<Test />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

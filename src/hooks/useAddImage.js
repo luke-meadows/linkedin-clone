@@ -3,19 +3,20 @@ import '../styles/AddImage.css';
 import { auth, db } from '../db/firebase';
 import firebase from 'firebase';
 import { useDispatch } from 'react-redux';
-import { changeBannerImg, changeProfileImg } from '../features/userSlice';
+import { changeProfileImg } from '../features/userSlice';
 
-export default function useAddProfileImage(imageToBeUpdated) {
-  const [showProfileImageModal, setShowProfileImageModal] = useState(false);
+export default function useAddImage({ imageToBeUpdated }) {
+  const [showBannerImageModal, setShowBannerImageModal] = useState(false);
   const dispatch = useDispatch();
   const [image, setImage] = useState('');
   const [preview, setPreview] = useState();
   const [loading, setLoading] = useState();
 
   const firebaseStorageFolders = {
-    profile: 'profilePics/',
-    banner: 'bannerPics/',
+    profile: 'profilePics',
+    banner: 'bannerPics',
   };
+
   // Create a preview as a side effect, whenever selected file is changed.
   useEffect(() => {
     if (!image) {
@@ -48,7 +49,7 @@ export default function useAddProfileImage(imageToBeUpdated) {
     const task = firebase
       .storage()
       .ref()
-      .child(`${firebaseStorageFolders[imageToBeUpdated]}` + user.uid + '.jpg')
+      .child(`${firebaseStorageFolders.imageToBeUpdated}/` + user.uid + '.jpg')
       .put(image);
 
     // While img uploading log its upload progress
@@ -65,33 +66,21 @@ export default function useAddProfileImage(imageToBeUpdated) {
     const taskComplete = async () => {
       // Extract the Public URL.
       const URL = await task.snapshot.ref.getDownloadURL();
-      if (imageToBeUpdated === 'profile') {
-        // Update the userAuth with profile img.
-        user.updateProfile({
-          photoURL: URL,
-        });
-        // Update the users collection with profile img.
-        db.collection('users').doc(auth.currentUser.uid).set(
-          {
-            profilePic: URL,
-          },
-          { merge: true }
-        );
-        // Update redux state with new img and perform rerender.
-        dispatch(changeProfileImg(URL));
-      }
+      // Update the userAuth with profile img.
 
-      if (imageToBeUpdated === 'banner') {
-        // Update the users collection with profile img.
-        db.collection('users').doc(auth.currentUser.uid).set(
-          {
-            bannerImage: URL,
-          },
-          { merge: true }
-        );
-        // Update redux state with new img and perform rerender.
-        dispatch(changeBannerImg(URL));
-      }
+      user.updateProfile({
+        photoURL: URL,
+      });
+      // Update the users collection with profile img.
+      db.collection('users').doc(auth.currentUser.uid).set(
+        {
+          profilePic: URL,
+        },
+        { merge: true }
+      );
+
+      // Update redux state with new img and perform rerender.
+      dispatch(changeProfileImg(URL));
       setLoading(false);
       setShowProfileImageModal(false);
     };
@@ -134,5 +123,5 @@ export default function useAddProfileImage(imageToBeUpdated) {
   };
 
   // Return logic from hook
-  return [setShowProfileImageModal, showProfileImageModal, ProfileImageModal];
+  return { setShowBannerImageModal, showBannerImageModal, ProfileBannerModal };
 }
