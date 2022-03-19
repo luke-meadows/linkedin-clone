@@ -17,7 +17,7 @@ export default function Post({ text, image, likes, comments, userId, time }) {
     setPostOwner('');
     // Fetch the user data (name and profile image) from the user collection using userID
     const user = await getUser(userId);
-    setPostOwner(user[0]);
+    setPostOwner(user);
   }, [user]);
 
   if (!postOwner) return <h1 />;

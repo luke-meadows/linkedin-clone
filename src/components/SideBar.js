@@ -3,7 +3,7 @@ import { Avatar } from '@mui/material';
 import BannerImage from '../assets/abstract-cosmic-gravity-field-with-2-planets-vector.jpeg';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
-import useAddProfileImage from '../hooks/useAddProfileImage';
+import useAddImage from '../hooks/useAddImage';
 
 export default function SideBar({ logout }) {
   const user = useSelector(selectUser);
@@ -18,9 +18,9 @@ export default function SideBar({ logout }) {
 
   // Add user profile img hook
   const [setShowProfileImageModal, showProfileImageModal, ProfileImageModal] =
-    useAddProfileImage('profile');
+    useAddImage('profile');
   const [setShowBannerImageModal, showBannerImageModal, BannerImageModal] =
-    useAddProfileImage('banner');
+    useAddImage('banner');
 
   return (
     <>

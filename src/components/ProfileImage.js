@@ -12,8 +12,8 @@ export default function ProfileImage() {
           src={user.profilePic}
           alt=""
           style={{
-            width: '42px',
-            height: '42px',
+            width: '52px',
+            height: '52px',
             borderRadius: '50%',
             margin: ' 0 0 -2px 0 ',
             cursor: 'pointer',

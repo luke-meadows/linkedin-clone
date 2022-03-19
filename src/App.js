@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { login, logout } from './features/userSlice';
 import { useEffect } from 'react';
 import Login from './components/Login';
-import { getBannerImg } from './lib/getBannerImg';
+import { getUser } from './lib/getUser';
 
 function App() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function App() {
   // Persist login state
   useEffect(async () => {
     auth.onAuthStateChanged(async (userCredential) => {
-      const bannerPic = await getBannerImg(userCredential.uid);
+      const user = await getUser(userCredential.uid);
       if (userCredential) {
         dispatch(
           login({
@@ -24,7 +24,9 @@ function App() {
             uid: userCredential.uid,
             displayName: userCredential.displayName,
             profilePic: userCredential.photoURL || '',
-            bannerPic: bannerPic || null,
+            bannerPic: user.bannerImage || null,
+            firstName: user.firstName,
+            lastName: user.lastName,
           })
         );
       } else {

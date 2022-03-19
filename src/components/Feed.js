@@ -24,7 +24,7 @@ export default function Feed() {
           <Post
             key={post.userId + i}
             text={post.content}
-            image={post.content.includes('portfolio' ? portfolio : null)}
+            image={post.image || null}
             userId={post.userId}
             likes={post.likeCount}
             comments={post.commentCount}

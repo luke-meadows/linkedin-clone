@@ -1,7 +1,6 @@
 .profile__container {
   flex: 0.6;
   width: 100%;
-  border: 1px solid lightgray;
   min-height: 150px;
   background: white;
   border-radius: 10px;
@@ -9,6 +8,14 @@
 .profile__container__top {
   min-height: 150px;
   position: relative;
+}
+.banner__image,
+.profile__image {
+  cursor: pointer;
+}
+.profile__banner {
+  background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
 }
 .banner__image {
   position: absolute;
@@ -23,7 +30,7 @@
   position: absolute;
   border-radius: 50%;
   left: 15px;
-  top: 150px;
+  top: 145px;
   transform: translateY(-50%);
   width: 100px;
   height: 100px;
