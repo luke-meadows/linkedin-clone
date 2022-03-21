@@ -1,7 +1,6 @@
 import '../styles/Feed.css';
 import CreatePost from './CreatePost';
 import Post from './Post';
-import portfolio from '../assets/portfolio.png';
 import { useEffect, useState } from 'react';
 import { calculatePostTime } from '../lib/calculatePostTime';
 import { getFeed } from '../lib/getFeed';
