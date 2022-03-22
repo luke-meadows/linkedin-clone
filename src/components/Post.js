@@ -8,17 +8,36 @@ import { useEffect, useState } from 'react';
 import { getUser } from '../lib/getUser';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
-export default function Post({ text, image, likes, comments, userId, time }) {
+import handlePostLike from '../lib/handlePostLike';
+import hasUserLikedPost from '../lib/hasUserLikedPost';
+import useAddComment from '../hooks/useAddComment';
+import getPostComments from '../lib/getPostComments';
+export default function Post({
+  text,
+  image,
+  likes,
+  comments,
+  userId,
+  time,
+  postId,
+}) {
   // Set state for user information to be put onto post
   const [postOwner, setPostOwner] = useState('');
-  const user = useSelector(selectUser);
-
+  const [userLikedPost, setUserLikedPost] = useState();
+  const loggedInUser = useSelector(selectUser);
+  const [showAddComment, setShowAddComment] = useState(false);
+  const [postComments, setPostComments] = useState();
+  const { handleChange, input, handleCommentSubmit } = useAddComment('');
   useEffect(async () => {
-    setPostOwner('');
     // Fetch the user data (name and profile image) from the user collection using userID
     const user = await getUser(userId);
+    const hasLiked = await hasUserLikedPost(postId, loggedInUser.uid);
+    const postComments = await getPostComments(postId).then((comments) =>
+      setPostComments(comments)
+    );
+    setUserLikedPost(hasLiked);
     setPostOwner(user);
-  }, [user]);
+  }, [likes]);
 
   if (!postOwner) return <h1 />;
   return (
@@ -44,16 +63,24 @@ export default function Post({ text, image, likes, comments, userId, time }) {
             <ThumbUpIcon />
             <p>{likes}</p>
           </div>
-          <div className="post__comments">
+          <div className="post__comments__counter">
             <p>{comments} comments</p>
           </div>
         </div>
         <div className="post__icons">
-          <div className="icon__container">
-            <ThumbUpIcon />
+          <div
+            className="icon__container"
+            onClick={() => handlePostLike(postId, loggedInUser.uid)}
+          >
+            <ThumbUpIcon
+              style={userLikedPost ? { color: '#0a66c2' } : { color: 'gray' }}
+            />
             <p>Like</p>
           </div>
-          <div className="icon__container">
+          <div
+            className="icon__container"
+            onClick={() => setShowAddComment(!showAddComment)}
+          >
             <CommentIcon />
             <p>Comment</p>
           </div>
@@ -66,6 +93,24 @@ export default function Post({ text, image, likes, comments, userId, time }) {
             <p>Send</p>
           </div>
         </div>
+        {showAddComment && (
+          <div className="post__comments">
+            <form
+              action=""
+              onSubmit={(e) => handleCommentSubmit(e, postId, loggedInUser.uid)}
+            >
+              <textarea
+                placeholder="Comment..."
+                value={input}
+                onChange={handleChange}
+              />
+              <button type="submit">Comment</button>
+            </form>
+            {postComments?.map((comment, idx) => (
+              <p key={comment.userId + idx}>{comment.content}</p>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

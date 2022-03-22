@@ -61,6 +61,7 @@ export default function useCreatePost(initialState = {}, setPosts, posts) {
         .then(() => {
           setLoading(false);
           clearForm();
+          setCreatePostModalVisible(false);
         });
       return;
     } else {
@@ -70,6 +71,7 @@ export default function useCreatePost(initialState = {}, setPosts, posts) {
       }).then(() => {
         setLoading(false);
         clearForm();
+        setCreatePostModalVisible(false);
       });
     }
   }
@@ -100,11 +102,11 @@ export default function useCreatePost(initialState = {}, setPosts, posts) {
 
   async function uploadPostToDb(postData) {
     console.log(posts);
-    await db
-      .collection('posts')
-      .doc()
+    const postRef = db.collection('posts').doc();
+    postRef
       .set({
         ...postData,
+        postId: postRef.id,
       })
       .then(() => {
         setPosts([

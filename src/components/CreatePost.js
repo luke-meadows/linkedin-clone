@@ -58,12 +58,12 @@ export default function CreatePost({ posts, setPosts }) {
                 name="image"
                 onChange={handleChange}
               />
+              <button type="submit" className="create__post__button">
+                Post
+              </button>
               {preview && (
                 <>
                   <img src={preview} className="create__post__photo__preview" />
-                  <button type="submit" className="create__post__button">
-                    Post
-                  </button>
                 </>
               )}
             </form>
