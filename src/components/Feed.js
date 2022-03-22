@@ -3,7 +3,6 @@ import CreatePost from './CreatePost';
 import Post from './Post';
 import { useEffect, useState } from 'react';
 import { calculatePostTime } from '../lib/calculatePostTime';
-import { getFeed } from '../lib/getFeed';
 import { db } from '../db/firebase';
 
 export default function Feed() {
@@ -22,7 +21,6 @@ export default function Feed() {
     <div className="feed__container">
       <CreatePost posts={posts} setPosts={setPosts} />
       {posts.map((post, i) => {
-        console.log(post);
         const time = calculatePostTime(post.createdAt);
         return (
           <Post

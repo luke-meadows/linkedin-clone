@@ -9,10 +9,20 @@ export default function useAddComment(initialState = '') {
     const { value } = e.target;
     setInput(value);
   }
+
+  function clearCommentInput() {
+    setInput('');
+  }
+
   function handleCommentSubmit(e, postId, loggedInUserId) {
     e.preventDefault();
     // Add comment to comments collection
-    db.collection('comments').doc(postId).set({
+    const postCommentRef = db
+      .collection('comments')
+      .doc(postId)
+      .collection('postComments');
+
+    postCommentRef.doc().set({
       content: input,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       owner: loggedInUserId,
@@ -21,6 +31,8 @@ export default function useAddComment(initialState = '') {
     db.collection('posts')
       .doc(postId)
       .update({ commentCount: firebase.firestore.FieldValue.increment(1) });
+
+    clearCommentInput();
   }
   return { handleChange, input, handleCommentSubmit };
 }

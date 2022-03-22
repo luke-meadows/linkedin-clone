@@ -13,7 +13,6 @@ export default async function handlePostLike(postId, userId) {
 }
 
 function likePost(postId, userId) {
-  console.log('clickerd');
   db.collection('likes').doc(`${postId}_${userId}`).set({
     userId: userId,
     postId: postId,

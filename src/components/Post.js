@@ -12,6 +12,9 @@ import handlePostLike from '../lib/handlePostLike';
 import hasUserLikedPost from '../lib/hasUserLikedPost';
 import useAddComment from '../hooks/useAddComment';
 import getPostComments from '../lib/getPostComments';
+import { v4 as uuidv4 } from 'uuid';
+import PostComments from './PostComments';
+import { db } from '../db/firebase';
 export default function Post({
   text,
   image,
@@ -32,12 +35,21 @@ export default function Post({
     // Fetch the user data (name and profile image) from the user collection using userID
     const user = await getUser(userId);
     const hasLiked = await hasUserLikedPost(postId, loggedInUser.uid);
-    const postComments = await getPostComments(postId).then((comments) =>
-      setPostComments(comments)
-    );
+    // await getPostComments(postId).then((comments) => setPostComments(comments));
     setUserLikedPost(hasLiked);
     setPostOwner(user);
   }, [likes]);
+
+  // Fetch post comments
+  useEffect(() => {
+    db.collection('comments')
+      .doc(postId)
+      .collection('postComments')
+      .orderBy('createdAt', 'desc')
+      .onSnapshot((comments) => {
+        setPostComments(comments.docs.map((doc) => doc.data()));
+      });
+  }, []);
 
   if (!postOwner) return <h1 />;
   return (
@@ -64,7 +76,9 @@ export default function Post({
             <p>{likes}</p>
           </div>
           <div className="post__comments__counter">
-            <p>{comments} comments</p>
+            <p onClick={() => setShowAddComment(!showAddComment)}>
+              {comments} comments
+            </p>
           </div>
         </div>
         <div className="post__icons">
@@ -106,9 +120,10 @@ export default function Post({
               />
               <button type="submit">Comment</button>
             </form>
-            {postComments?.map((comment, idx) => (
-              <p key={comment.userId + idx}>{comment.content}</p>
-            ))}
+
+            {postComments.length > 0 && (
+              <PostComments comments={postComments} />
+            )}
           </div>
         )}
       </div>
