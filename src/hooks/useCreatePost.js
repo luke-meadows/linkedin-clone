@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import { v4 as uuidv4 } from 'uuid';
@@ -7,9 +7,11 @@ import { db } from '../db/firebase';
 
 export default function useCreatePost(initialState = {}, setPosts, posts) {
   // first get post data and process it
-  const [inputs, setInputs] = useState(initialState);
   const user = useSelector(selectUser);
+  const [inputs, setInputs] = useState(initialState);
   const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState();
+  const [createPostModalVisible, setCreatePostModalVisible] = useState(false);
   const initialPostData = {
     likeCount: 0,
     commentCount: 0,
@@ -17,6 +19,17 @@ export default function useCreatePost(initialState = {}, setPosts, posts) {
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     // content: inputs.post,
   };
+  // Listen for image and create preview if present
+  useEffect(() => {
+    if (!inputs.image) {
+      setPreview(undefined);
+      return;
+    }
+    const objectUrl = URL.createObjectURL(inputs.image);
+    setPreview(objectUrl);
+    // Free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [inputs.image]);
 
   function clearForm() {
     setInputs({ post: '', image: '' });
@@ -101,5 +114,13 @@ export default function useCreatePost(initialState = {}, setPosts, posts) {
       });
   }
 
-  return { inputs, handleChange, handleSubmit, loading };
+  return {
+    inputs,
+    handleChange,
+    handleSubmit,
+    loading,
+    preview,
+    createPostModalVisible,
+    setCreatePostModalVisible,
+  };
 }

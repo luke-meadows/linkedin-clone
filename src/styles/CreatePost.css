@@ -31,35 +31,55 @@
   color: gray;
   cursor: pointer;
 }
+
 .create__post__modal {
-  border: 1px solid blue;
-  padding: 16px;
+  background: white;
+  padding: 8px;
   position: fixed;
   left: 50%;
   top: 50%;
+  border-radius: 10px;
   /* background: #000; */
   transform: translate(-50%, -50%);
+  height: auto;
+  width: 300px;
 }
 .create__post__form {
   display: flex;
   flex-direction: column;
 }
 .create__post__text {
-  margin-left: 10px;
-  border-radius: 25px;
-  border: 1px solid blue;
+  border-radius: 5px;
+  background: lightgray;
+  color: var(--black);
+  border: none;
   outline: none;
-  padding: 16px;
-  font-weight: 600;
-  font-size: 14px;
+  padding: 8px;
+  font-weight: 500;
+  font-size: 12px;
   display: inline-block;
+  height: 150px;
+}
+
+.create__post__form > label {
+  margin: 8px 0 0 0;
+  cursor: copy;
 }
 
 .create__post__top > form > input[type='file'] {
   border: none;
 }
 .create__post__photo__preview {
-  height: 100px;
+  width: 100%;
+}
+.create__post__button {
+  border-radius: 30px;
+  padding: 5px 10px;
+  margin-top: 6px;
+  border: none;
+  background: #2e67c2;
+  color: white;
+  cursor: pointer;
 }
 .create__post__bottom {
   display: flex;
@@ -84,4 +104,26 @@
   font-weight: bold;
   font-size: 14px;
   color: gray;
+}
+
+textarea::-webkit-input-placeholder {
+  color: var(--black);
+}
+
+textarea:-moz-placeholder {
+  /* Firefox 18- */
+  color: var(--black);
+}
+
+textarea::-moz-placeholder {
+  /* Firefox 19+ */
+  color: var(--black);
+}
+
+textarea:-ms-input-placeholder {
+  color: var(--black);
+}
+
+textarea::placeholder {
+  color: var(--black);
 }

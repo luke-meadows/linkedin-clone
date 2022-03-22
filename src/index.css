@@ -10,7 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --max-width: 1100px;
-  background: #f3f2ef;
+  --black: rgb(16, 16, 16);
   background: #8f8fff;
 }
 
