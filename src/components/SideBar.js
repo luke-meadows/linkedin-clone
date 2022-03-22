@@ -55,16 +55,7 @@ export default function SideBar({ logout }) {
           <h2>Welcome, {user.displayName}!</h2>
           <h6>{user.email}</h6>
         </div>
-        <div className="sidebar__stats">
-          <div className="sidebar__stat">
-            <p>Who viewed you</p>
-            <p>1,111</p>
-          </div>
-          <div className="sidebar__stat">
-            <p>Views on post</p>
-            <p>2,341</p>
-          </div>
-        </div>
+
         <div className="sidebar__bottom">
           <h6>Followed Hashtags</h6>
           {topic('react')}

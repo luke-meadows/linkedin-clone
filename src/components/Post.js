@@ -11,7 +11,6 @@ import { selectUser } from '../features/userSlice';
 import handlePostLike from '../lib/handlePostLike';
 import hasUserLikedPost from '../lib/hasUserLikedPost';
 import useAddComment from '../hooks/useAddComment';
-import getPostComments from '../lib/getPostComments';
 import { v4 as uuidv4 } from 'uuid';
 import PostComments from './PostComments';
 import { db } from '../db/firebase';
@@ -35,7 +34,6 @@ export default function Post({
     // Fetch the user data (name and profile image) from the user collection using userID
     const user = await getUser(userId);
     const hasLiked = await hasUserLikedPost(postId, loggedInUser.uid);
-    // await getPostComments(postId).then((comments) => setPostComments(comments));
     setUserLikedPost(hasLiked);
     setPostOwner(user);
   }, [likes]);
@@ -121,9 +119,9 @@ export default function Post({
               <button type="submit">Comment</button>
             </form>
 
-            {postComments.length > 0 && (
-              <PostComments comments={postComments} />
-            )}
+            {/* {postComments.length > 0 && ( */}
+            <PostComments comments={postComments} />
+            {/* )} */}
           </div>
         )}
       </div>

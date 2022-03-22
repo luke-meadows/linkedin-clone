@@ -13,13 +13,14 @@ export default function PostComments({ comments }) {
       const user = await getUser(comment.owner).then((owner) =>
         setCommentOwner(owner)
       );
+      return () => user();
     }, []);
     return (
       <div className="comment">
         <div className="comment__header">
           <Avatar />
           <div className="comment__owner">
-            <h6>{commentOwner?.firstName + ' ' + commentOwner?.lastName} </h6>
+            <h6>{commentOwner.firstName + ' ' + commentOwner.lastName} </h6>
             <p>{calculatePostTime(comment.createdAt)}</p>
           </div>
         </div>
