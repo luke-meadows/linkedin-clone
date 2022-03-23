@@ -12,7 +12,7 @@ import handlePostLike from '../lib/handlePostLike';
 import hasUserLikedPost from '../lib/hasUserLikedPost';
 import useAddComment from '../hooks/useAddComment';
 import { v4 as uuidv4 } from 'uuid';
-import PostComments from './PostComments';
+import { PostComments } from './PostComments';
 import { db } from '../db/firebase';
 export default function Post({
   text,
@@ -119,9 +119,7 @@ export default function Post({
               <button type="submit">Comment</button>
             </form>
 
-            {/* {postComments.length > 0 && ( */}
             <PostComments comments={postComments} />
-            {/* )} */}
           </div>
         )}
       </div>
