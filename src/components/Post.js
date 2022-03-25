@@ -29,7 +29,7 @@ export default function Post({
   const [userLikedPost, setUserLikedPost] = useState();
   const loggedInUser = useSelector(selectUser);
   const [showAddComment, setShowAddComment] = useState(false);
-  const [postComments, setPostComments] = useState();
+  const [postComments, setPostComments] = useState([]);
   const { handleChange, input, handleCommentSubmit } = useAddComment('');
   useEffect(async () => {
     // Fetch the user data (name and profile image) from the user collection using userID

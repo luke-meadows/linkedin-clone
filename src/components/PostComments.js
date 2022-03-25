@@ -4,6 +4,7 @@ import React from 'react';
 import { PostComment } from './PostComment';
 
 export const PostComments = React.memo(({ comments }) => {
+  if (comments.length < 1) return <div />;
   return (
     <div className="comments__container">
       {comments.map((comment) => {
