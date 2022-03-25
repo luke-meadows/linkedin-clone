@@ -11,6 +11,7 @@ export default function Feed() {
   useEffect(async () => {
     db.collection('posts')
       .orderBy('createdAt', 'desc')
+      .limit(15)
       .onSnapshot((posts) => {
         setPosts(posts.docs.map((doc) => doc.data()));
       });

@@ -1,13 +1,16 @@
 import '../styles/Chat.css';
-import InfoIcon from '@mui/icons-material/Info';
-import CircleIcon from '@mui/icons-material/Circle';
+import getChats from '../lib/getChats';
+import { useEffect } from 'react';
 
 export default function Chat() {
+  useEffect(async () => {
+    const chats = await getChats();
+    console.log(chats);
+  }, []);
   return (
     <div className="chat">
       <div className="chat__top">
-        <h3>LinkedIn News</h3>
-        <InfoIcon />
+        <h3>Chat</h3>
       </div>
     </div>
   );
