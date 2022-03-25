@@ -37,3 +37,9 @@
   font-family: monospace;
   margin-top: 12px;
 }
+
+.profile-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}

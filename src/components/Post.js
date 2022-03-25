@@ -14,6 +14,7 @@ import useAddComment from '../hooks/useAddComment';
 import { v4 as uuidv4 } from 'uuid';
 import { PostComments } from './PostComments';
 import { db } from '../db/firebase';
+import getPostComments from '../lib/getPostComments';
 export default function Post({
   text,
   image,
@@ -34,19 +35,27 @@ export default function Post({
     // Fetch the user data (name and profile image) from the user collection using userID
     const user = await getUser(userId);
     const hasLiked = await hasUserLikedPost(postId, loggedInUser.uid);
+
     setUserLikedPost(hasLiked);
     setPostOwner(user);
   }, [likes]);
 
   // Fetch post comments
-  useEffect(() => {
-    db.collection('comments')
-      .doc(postId)
-      .collection('postComments')
-      .orderBy('createdAt', 'desc')
-      .onSnapshot((comments) => {
-        setPostComments(comments.docs.map((doc) => doc.data()));
+  useEffect(async () => {
+    await getPostComments(postId).then((data) => {
+      // Get post comments and unique post owners, then an owner for each post
+      const owners = {};
+      data.slice(1).forEach((owner) => {
+        owners[owner.userId] = {
+          profilePic: owner.profilePic,
+          displayName: owner.username,
+        };
       });
+      const commentsWithOwners = data[0].map((comment) => {
+        return { ...comment, owner: owners[comment.owner] };
+      });
+      setPostComments(commentsWithOwners);
+    });
   }, []);
 
   if (!postOwner) return <h1 />;
@@ -109,7 +118,15 @@ export default function Post({
           <div className="post__comments">
             <form
               action=""
-              onSubmit={(e) => handleCommentSubmit(e, postId, loggedInUser.uid)}
+              onSubmit={(e) =>
+                handleCommentSubmit(
+                  e,
+                  postId,
+                  loggedInUser.uid,
+                  postComments,
+                  setPostComments
+                )
+              }
             >
               <textarea
                 placeholder="Comment..."
