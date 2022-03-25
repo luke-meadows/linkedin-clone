@@ -1,25 +1,25 @@
-.news__widget {
+.chat {
   background: white;
   border-radius: 10px;
   border: 1px solid lightgray;
   height: fit-content;
 }
 
-.news__widget__top {
+.chat__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 10px 0 10px;
   margin-bottom: 10px;
 }
-.news__widget__top > h3 {
+.chat__top > h3 {
   font-size: 16px;
   font-weight: 600;
 }
-.news__widget__top > svg {
+.chat__top > svg {
   font-size: 16px;
 }
-.news__widget__top > svg:hover {
+.chat__top > svg:hover {
   cursor: pointer;
 }
 

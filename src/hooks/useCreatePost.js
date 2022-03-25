@@ -17,7 +17,6 @@ export default function useCreatePost(initialState = {}, setPosts, posts) {
     commentCount: 0,
     userId: user.uid,
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    // content: inputs.post,
   };
   // Listen for image and create preview if present
   useEffect(() => {
@@ -51,7 +50,6 @@ export default function useCreatePost(initialState = {}, setPosts, posts) {
       await uploadImage()
         // then upload post with image
         .then(async (URL) => {
-          console.log(URL);
           await uploadPostToDb({
             ...initialPostData,
             image: URL,

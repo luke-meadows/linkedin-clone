@@ -54,16 +54,10 @@ export default function SideBar({ logout }) {
           )}
           <h2>Welcome, {user.displayName}!</h2>
           <h6>{user.email}</h6>
+          <button className="logout" onClick={logout}>
+            Logout
+          </button>
         </div>
-
-        <div className="sidebar__bottom">
-          <h6>Followed Hashtags</h6>
-          {topic('react')}
-          {topic('webdevelopment')}
-          {topic('softwareengineering')}
-          {topic('fullstack')}
-        </div>
-        <button onClick={logout}>logout</button>
       </div>
       {showProfileImageModal && <ProfileImageModal />}
       {showBannerImageModal && <BannerImageModal />}

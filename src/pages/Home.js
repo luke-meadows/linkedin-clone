@@ -1,6 +1,6 @@
 import SideBar from '../components/SideBar';
 import Feed from '../components/Feed';
-import NewsWidget from '../components/NewsWidget';
+import Chat from '../components/Chat';
 import Login from '../components/Login';
 import { auth } from '../db/firebase';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +29,7 @@ export default function Home() {
         <div className="app__body home__grid">
           <SideBar logout={signOut} />
           <Feed />
-          <NewsWidget />
+          <Chat />
         </div>
       )}
     </div>
