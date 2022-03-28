@@ -11,12 +11,12 @@ export default async function getChats(user) {
     .get();
   const chatIds = getChatIds.docs.map((doc) => doc.data());
   // Then for each chat ID bring back the messages
-  chatIds.forEach(async (id) => {
-    const message = getMessages(id);
-    promises.push(message);
-  });
+  // chatIds.forEach(async (id) => {
+  //   const message = getMessages(id);
+  //   promises.push(message);
+  // });
 
-  return Promise.all(promises);
+  return chatIds;
 }
 
 async function getMessages(chat) {

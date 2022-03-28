@@ -1,6 +1,6 @@
 import SideBar from '../components/SideBar';
 import Feed from '../components/Feed';
-import Chat from '../components/Chat';
+import { Chat } from '../components/Chat';
 import Login from '../components/Login';
 import { auth } from '../db/firebase';
 import { useDispatch, useSelector } from 'react-redux';
