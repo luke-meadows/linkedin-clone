@@ -5,35 +5,30 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import { db } from '../db/firebase';
 import { v4 as uuidv4 } from 'uuid';
+import Conversation from './Conversation';
+
+//first grab the ids of the chats
+//then add a listener onto each chat so user is notified when a new message comes in
+// then display chats in the widget
 
 export const Chat = React.memo(() => {
-  const [chats, setChats] = useState([]);
   const user = useSelector(selectUser);
+  const [conversations, setConversations] = useState([]);
+
   useEffect(async () => {
-    const fetchedChats = await getChats(user.uid);
-    const ids = fetchedChats.map((chat) => chat.id);
-    ids.forEach((id) => {
-      const chatsRef = db.collection('chats').doc(id).collection('messages');
-      const messages = [];
-      chatsRef.onSnapshot((snap) => {
-        snap.forEach((x) => {
-          messages.push(x.data());
-        });
-        setChats([...chats, { [id]: [...messages] }]);
-      });
-    });
+    const userConversations = await getChats(user.uid);
+    setConversations(userConversations);
   }, []);
+
   return (
     <div className="chat">
       <div className="chat__top">
         <h3>Chat</h3>
       </div>
-      {chats &&
-        chats.map((chat) => {
-          console.log(chat);
-          const uuid = uuidv4();
-          return <p key={uuid}>{chat.text}</p>;
-        })}
+      {conversations.map((convo) => {
+        const key = uuidv4();
+        return <Conversation key={key} conversation={convo} />;
+      })}
     </div>
   );
 });

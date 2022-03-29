@@ -3,7 +3,7 @@ import '../styles/PostComments.css';
 import React from 'react';
 import { PostComment } from './PostComment';
 
-export const PostComments = React.memo(({ comments }) => {
+export const PostComments = ({ comments }) => {
   if (comments.length < 1) return <div />;
   return (
     <div className="comments__container">
@@ -13,4 +13,4 @@ export const PostComments = React.memo(({ comments }) => {
       })}
     </div>
   );
-});
+};

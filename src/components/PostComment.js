@@ -1,7 +1,7 @@
 import { Avatar } from '@mui/material';
 import React from 'react';
 import { calculatePostTime } from '../lib/calculatePostTime';
-export const PostComment = React.memo(({ comment }) => {
+export const PostComment = ({ comment }) => {
   return (
     <div className="comment">
       <div className="comment__header">
@@ -19,4 +19,4 @@ export const PostComment = React.memo(({ comment }) => {
       <p className="comment__content">{comment.content}</p>
     </div>
   );
-});
+};

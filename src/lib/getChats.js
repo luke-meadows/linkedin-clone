@@ -1,12 +1,11 @@
 import { db } from '../db/firebase';
 export default async function getChats(user) {
   const promises = [];
-  const userId = 'vLmkeUxl5sNBHEzMzAgjnSCBtIU2';
 
   // First get the list of the users chat IDs from the user collection
   const getChatIds = await db
     .collection('users')
-    .doc(userId)
+    .doc(user)
     .collection('chats')
     .get();
   const chatIds = getChatIds.docs.map((doc) => doc.data());
