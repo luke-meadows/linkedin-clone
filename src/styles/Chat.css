@@ -1,15 +1,19 @@
 .chat {
   background: white;
   border-radius: 10px;
-  border: 1px solid lightgray;
   height: fit-content;
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  position: sticky;
+  top: 80px;
+  padding: 16px;
 }
 
 .chat__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 10px 0 10px;
   margin-bottom: 10px;
 }
 .chat__top > h3 {
@@ -52,4 +56,92 @@
   color: gray;
   font-weight: 400;
   margin-left: 16px;
+}
+
+.conversation {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 16px;
+  background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
+  padding: 16px;
+  color: rgb(48, 47, 47);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.conversation__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.conversation__top > svg {
+  cursor: pointer;
+}
+.conversation__top > h6 {
+  font-size: 16px;
+}
+
+.conversation__button {
+  cursor: pointer;
+}
+.conversation__messages {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: scroll;
+}
+
+.conversation__form {
+}
+
+.message {
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin: 10px 0;
+  max-width: 80%;
+  font-size: 12px;
+  font-family: monospace;
+  color: black;
+}
+
+.sent {
+  background: rgba(255, 255, 255, 0.395);
+  margin-left: auto;
+  margin-right: 0;
+}
+.received {
+  background: #8f8eff;
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.conversation > form {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+.conversation > form > input {
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(33, 32, 32);
+  background: #eef3f8;
+  border: none;
+  outline: none;
+  width: 170px;
+  font-family: monospace;
+}
+.conversation > form > button {
+  border-radius: 30px;
+  padding: 5px 15px;
+  border: none;
+  background: #2e67c2;
+  color: white;
+  cursor: pointer;
 }

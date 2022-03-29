@@ -56,7 +56,7 @@ export default function Post({
       });
       setPostComments(commentsWithOwners);
     });
-  }, []);
+  }, [postId]);
 
   if (!postOwner) return <h1 />;
   return (

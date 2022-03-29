@@ -9,12 +9,9 @@
 }
 
 .comment {
-  /* border: 1px solid var(--black); */
   margin: 10px 0;
   padding: 10px;
   border-radius: 5px;
-  /* display: flex; */
-  /* align-items: center; */
   background: rgba(255, 255, 255, 0.395);
 }
 .comment__header {
