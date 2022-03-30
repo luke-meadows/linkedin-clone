@@ -9,12 +9,6 @@ export default async function getChats(user) {
     .collection('chats')
     .get();
   const chatIds = getChatIds.docs.map((doc) => doc.data());
-  // Then for each chat ID bring back the messages
-  // chatIds.forEach(async (id) => {
-  //   const message = getMessages(id);
-  //   promises.push(message);
-  // });
-
   return chatIds;
 }
 

@@ -8,6 +8,7 @@ import { selectUser } from '../features/userSlice';
 import { useSelector } from 'react-redux';
 
 export default function Conversation({ conversation, setActiveChat }) {
+  console.log(conversation);
   const user = useSelector(selectUser);
   const [messageText, setMessageText] = useState('');
   const [messages, setMessages] = useState([]);
@@ -49,7 +50,7 @@ export default function Conversation({ conversation, setActiveChat }) {
           <CloseIcon onClick={() => setActiveChat(null)} />
         </div>
         <div className="conversation__messages">
-          {messages.map((message) => {
+          {messages?.map((message) => {
             const key = uuidv4();
             return (
               <p
