@@ -15,8 +15,19 @@ export const Chat = React.memo(() => {
   const [selectUserToChatOpen, setSelectUserToChatOpen] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
   useEffect(async () => {
-    const userConversations = await getChats(loggedInUser.uid);
-    setConversations(userConversations);
+    // const userConversations = await getChats(loggedInUser.uid);
+    const getChatIds = await db
+      .collection('users')
+      .doc(loggedInUser.uid)
+      .collection('chats')
+      .onSnapshot((querySnapshot) => {
+        var returnedChats = [];
+        querySnapshot.forEach((doc) => {
+          returnedChats.push(doc.data());
+        });
+        setConversations(returnedChats);
+      });
+    // const chatIds = getChatIds.docs.map((doc) => doc.data());
   }, []);
 
   async function getAllUsers() {
@@ -61,6 +72,7 @@ export const Chat = React.memo(() => {
               participant: `${loggedInUser.firstName} ${loggedInUser.lastName}`,
               participantId: loggedInUser.uid,
             });
+          // add record in logged in user's user doc chats collection
           db.collection('users')
             .doc(loggedInUser.uid)
             .collection('chats')
@@ -73,10 +85,7 @@ export const Chat = React.memo(() => {
         })
         .catch(function (error) {});
     }
-
-    // if not create new:
-    // first create a chat in chat collection
-    // wait for the message to send then enter into currrent user and receiving users's chat collection in user doc
+    setSelectUserToChatOpen(false);
   }
 
   return (

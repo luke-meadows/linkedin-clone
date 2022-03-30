@@ -8,13 +8,13 @@ import { selectUser } from '../features/userSlice';
 import { useSelector } from 'react-redux';
 
 export default function Conversation({ conversation, setActiveChat }) {
-  console.log(conversation);
   const user = useSelector(selectUser);
   const [messageText, setMessageText] = useState('');
   const [messages, setMessages] = useState([]);
   useEffect(() => {
     // Collect the messages from the chat Id
-    db.collection('chats')
+    const getChats = db
+      .collection('chats')
       .doc(conversation.id)
       .collection('messages')
       .orderBy('createdAt', 'asc')
@@ -26,6 +26,7 @@ export default function Conversation({ conversation, setActiveChat }) {
         });
         setMessages(returnedMessages);
       });
+    return () => getChats();
   }, []);
 
   function sendMessage(e) {
@@ -56,7 +57,7 @@ export default function Conversation({ conversation, setActiveChat }) {
               <p
                 key={key}
                 className={
-                  message.userId === user.uid
+                  message.owner === user.uid
                     ? 'message sent'
                     : 'message received'
                 }
