@@ -104,7 +104,7 @@
 .message {
   border-radius: 15px;
   padding: 5px 10px;
-  margin: 10px 0;
+  margin: 5px 0;
   max-width: 80%;
   font-size: 12px;
   font-family: monospace;
@@ -144,4 +144,8 @@
   background: #2e67c2;
   color: white;
   cursor: pointer;
+}
+
+.select__user__to__chat {
+  background-color: #2e67c2;
 }
