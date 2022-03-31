@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { db } from '../db/firebase';
 import { v4 as uuidv4 } from 'uuid';
 import CloseIcon from '@mui/icons-material/Close';
@@ -11,8 +11,9 @@ export default function Conversation({ conversation, setActiveChat }) {
   const user = useSelector(selectUser);
   const [messageText, setMessageText] = useState('');
   const [messages, setMessages] = useState([]);
+  const messagesRef = useRef();
   useEffect(() => {
-    // Collect the messages from the chat Id
+    // Collect the messages from the chat id
     const getChats = db
       .collection('chats')
       .doc(conversation.id)
@@ -28,6 +29,10 @@ export default function Conversation({ conversation, setActiveChat }) {
       });
     return () => getChats();
   }, []);
+
+  useEffect(() => {
+    messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+  }, [messages]);
 
   function sendMessage(e) {
     e.preventDefault();
@@ -50,7 +55,7 @@ export default function Conversation({ conversation, setActiveChat }) {
           <h6>{conversation.participant}</h6>
           <CloseIcon onClick={() => setActiveChat(null)} />
         </div>
-        <div className="conversation__messages">
+        <div className="conversation__messages" ref={messagesRef}>
           {messages?.map((message) => {
             const key = uuidv4();
             return (

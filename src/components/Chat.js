@@ -1,12 +1,12 @@
 import '../styles/Chat.css';
-import getChats from '../lib/getChats';
+import MessageIcon from '@mui/icons-material/Message';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
-import { v4 as uuidv4 } from 'uuid';
 import Conversation from './Conversation';
 import AddIcon from '@mui/icons-material/Add';
 import { db } from '../db/firebase';
+import ExistingChats from './ExistingChats';
 
 export const Chat = React.memo(() => {
   const loggedInUser = useSelector(selectUser);
@@ -16,8 +16,7 @@ export const Chat = React.memo(() => {
   const [allUsers, setAllUsers] = useState([]);
   useEffect(async () => {
     // const userConversations = await getChats(loggedInUser.uid);
-    const getChatIds = await db
-      .collection('users')
+    db.collection('users')
       .doc(loggedInUser.uid)
       .collection('chats')
       .onSnapshot((querySnapshot) => {
@@ -93,33 +92,32 @@ export const Chat = React.memo(() => {
       <div className="chat__top">
         <h3>Chat</h3>
         <AddIcon
+          className={selectUserToChatOpen ? 'rotate' : ''}
           onClick={async () => {
             getAllUsers();
             setSelectUserToChatOpen(!selectUserToChatOpen);
           }}
         />
       </div>
-      {conversations.map((convo) => {
-        const key = uuidv4();
-        return (
-          <p key={key} onClick={() => setActiveChat(convo)}>
-            {convo.participant}
-          </p>
-        );
-      })}
 
       {activeChat && (
         <Conversation conversation={activeChat} setActiveChat={setActiveChat} />
       )}
 
-      {selectUserToChatOpen && (
-        <div className="select__user__to__chat">
+      {selectUserToChatOpen ? (
+        <div>
           {allUsers?.map((user) => (
-            <p onClick={() => startNewChat(user)} key={user.userId}>
-              {user.username}
-            </p>
+            <div className="recipient" key={user.userId}>
+              <p onClick={() => startNewChat(user)}>{user.username}</p>
+              <MessageIcon />
+            </div>
           ))}
         </div>
+      ) : (
+        <ExistingChats
+          conversations={conversations}
+          setActiveChat={setActiveChat}
+        />
       )}
     </div>
   );
