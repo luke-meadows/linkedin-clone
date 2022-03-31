@@ -2,8 +2,9 @@
   flex: 0.6;
   width: 100%;
   min-height: 150px;
-  background: white;
   border-radius: 10px;
+  background: white;
+  margin-bottom: 16px;
 }
 .profile__container__top {
   min-height: 150px;

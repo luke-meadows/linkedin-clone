@@ -20,7 +20,7 @@ export default function Feed() {
   if (!posts) return <h6>loading</h6>;
   return (
     <div className="feed__container">
-      <CreatePost posts={posts} setPosts={setPosts} />
+      <CreatePost posts={posts} setPosts={setPosts} withPhoto />
       {posts.map((post, i) => {
         const time = calculatePostTime(post.createdAt);
         return (

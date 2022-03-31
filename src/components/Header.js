@@ -1,13 +1,11 @@
 import '../styles/Header.css';
 import SearchIcon from '@mui/icons-material/Search';
-import HomeIcon from '@mui/icons-material/Home';
-import NetworkIcon from '@mui/icons-material/ConnectWithoutContact';
-import MessageIcon from '@mui/icons-material/Message';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import HeaderOption from './HeaderOption';
-import avatar from '../assets/avatar.jpeg';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 export default function Header() {
+  const loggedInUser = useSelector(selectUser);
   return (
     <div className="header">
       <div className="header__container">
@@ -23,15 +21,9 @@ export default function Header() {
             <SearchIcon />
             <input type="text" placeholder="Search" />
           </div>
-          <HeaderOption Icon={HomeIcon} url="/" header="Home" />
-          <HeaderOption Icon={NetworkIcon} url="/" header="Network" />
-          <HeaderOption Icon={MessageIcon} url="/" header="Messaging" />
-          <HeaderOption
-            Icon={NotificationsIcon}
-            url="/"
-            header="Notifications"
-          />
-          <HeaderOption avatar={avatar} url="/profile" header="Profile" />
+          {loggedInUser && (
+            <HeaderOption avatar={loggedInUser.profilePic} url="/profile" />
+          )}
         </div>
       </div>
     </div>

@@ -3,6 +3,10 @@
   text-align: center;
   margin: 0 10px;
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .Header__Option:hover {
@@ -17,6 +21,6 @@
 
 .Header__Option > img {
   object-fit: contain;
-  height: 24px;
+  height: 45px;
   border-radius: 50%;
 }

@@ -4,7 +4,7 @@ import VideoIcon from '@mui/icons-material/SlowMotionVideo';
 import ProfileImage from './ProfileImage';
 import useCreatePost from '../hooks/useCreatePost';
 
-export default function CreatePost({ posts, setPosts }) {
+export default function CreatePost({ posts, setPosts, withPhoto }) {
   const {
     inputs,
     handleChange,
@@ -25,7 +25,7 @@ export default function CreatePost({ posts, setPosts }) {
   return (
     <div className="create__post">
       <div className="create__post__top">
-        <ProfileImage />
+        {withPhoto && <ProfileImage withMargin />}
         {loading && <h4>Loading.</h4>}
         <div
           className="create__post__start__button"

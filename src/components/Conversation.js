@@ -55,34 +55,35 @@ export default function Conversation({ conversation, setActiveChat }) {
           <h6>{conversation.participant}</h6>
           <CloseIcon onClick={() => setActiveChat(null)} />
         </div>
-        <div className="conversation__messages" ref={messagesRef}>
-          {messages?.map((message) => {
-            const key = uuidv4();
-            return (
-              <p
-                key={key}
-                className={
-                  message.owner === user.uid
-                    ? 'message sent'
-                    : 'message received'
-                }
-              >
-                {message.message}
-              </p>
-            );
-          })}
+        <div>
+          <div className="conversation__messages" ref={messagesRef}>
+            {messages?.map((message) => {
+              const key = uuidv4();
+              return (
+                <p
+                  key={key}
+                  className={
+                    message.owner === user.uid
+                      ? 'message sent'
+                      : 'message received'
+                  }
+                >
+                  {message.message}
+                </p>
+              );
+            })}
+          </div>
+          <form action="" onSubmit={sendMessage} className="conversation__form">
+            <input
+              placeholder="Say something"
+              type="text"
+              value={messageText}
+              onChange={(e) => setMessageText(e.target.value)}
+            />
+            <button type="submit">Send</button>
+          </form>
         </div>
-        <form action="" onSubmit={sendMessage}>
-          <input
-            placeholder="Say something"
-            type="text"
-            value={messageText}
-            onChange={(e) => setMessageText(e.target.value)}
-          />
-          <button type="submit">Send</button>
-        </form>
       </div>
-      {/* )} */}
     </div>
   );
 }

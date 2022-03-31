@@ -99,16 +99,20 @@ export const Chat = React.memo(() => {
           }}
         />
       </div>
-
       {activeChat && (
+        // Open conversation when clicked
         <Conversation conversation={activeChat} setActiveChat={setActiveChat} />
       )}
-
       {selectUserToChatOpen ? (
+        // Display new chat options or existing chats
         <div>
           {allUsers?.map((user) => (
-            <div className="recipient" key={user.userId}>
-              <p onClick={() => startNewChat(user)}>{user.username}</p>
+            <div
+              className="recipient"
+              key={user.userId}
+              onClick={() => startNewChat(user)}
+            >
+              <p>{user.username}</p>
               <MessageIcon />
             </div>
           ))}

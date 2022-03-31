@@ -2,11 +2,11 @@ import { Avatar } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 
-export default function ProfileImage() {
+export default function ProfileImage({ withMargin }) {
   const user = useSelector(selectUser);
 
   return (
-    <div>
+    <div style={withMargin ? { marginRight: '10px' } : {}}>
       {user.profilePic ? (
         <img
           src={user.profilePic}

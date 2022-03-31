@@ -16,8 +16,8 @@ function App() {
   // Persist login state
   useEffect(async () => {
     auth.onAuthStateChanged(async (userCredential) => {
-      const user = await getUser(userCredential.uid);
       if (userCredential) {
+        const user = await getUser(userCredential.uid);
         dispatch(
           login({
             email: userCredential.email,
