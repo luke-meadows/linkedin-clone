@@ -41,6 +41,7 @@ function App() {
   return (
     <div className="app">
       <Header />
+      <DisabledOverlay />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<LoggedInUserProfilePage />} />

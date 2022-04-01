@@ -63,6 +63,7 @@ export default function Search() {
         <input
           type="text"
           placeholder="Search"
+          value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}
@@ -76,7 +77,14 @@ export default function Search() {
           }
         >
           {results?.map((user) => (
-            <Link to={`/profile/${user.userId}`} key={user.userId}>
+            <Link
+              onClick={() => {
+                dispatch(toggleDisableScreen(false));
+                setSearchTerm('');
+              }}
+              to={`/profile/${user.userId}`}
+              key={user.userId}
+            >
               {user.username}
             </Link>
           ))}

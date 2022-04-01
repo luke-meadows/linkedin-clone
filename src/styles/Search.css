@@ -38,7 +38,7 @@
   pointer-events: all;
 }
 
-.search__results > p {
+.search__results > a {
   font-size: 12px;
   /* background: lightgray; */
 
@@ -47,8 +47,10 @@
   display: flex;
   justify-content: space-between;
   padding: 5px;
+  text-decoration: none;
+  color: black;
 }
 
-.search__results > p:hover {
+.search__results > a:hover {
   background-color: #dfdeff;
 }

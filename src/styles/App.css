@@ -6,9 +6,16 @@
   margin-top: 15px;
 }
 .home__grid {
-  grid-template-columns: 20% 55% 25%;
+  grid-template-columns: 30% 70%;
 }
 .profile__grid {
   width: 800px;
   margin: 15px auto;
+}
+
+.side__panel {
+  position: sticky;
+  top: 90px;
+  height: fit-content;
+  padding-bottom: 15px;
 }
