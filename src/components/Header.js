@@ -1,13 +1,22 @@
 import '../styles/Header.css';
 import HeaderOption from './HeaderOption';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import Search from './Search';
+import DisabledOverlay from './DisabledOverlay';
+import {
+  selectDisableScreen,
+  toggleDisableScreen,
+} from '../features/disableScreen';
+import { useEffect } from 'react';
 export default function Header() {
   const loggedInUser = useSelector(selectUser);
+  const isScreenDisabled = useSelector(selectDisableScreen);
+
   return (
     <div className="header">
+      {isScreenDisabled && <DisabledOverlay />}
       <div className="header__container">
         <div className="header__left">
           <Link to="/">

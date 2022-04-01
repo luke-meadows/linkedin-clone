@@ -1,10 +1,18 @@
 import '../styles/CreatePost.css';
 import ImageIcon from '@mui/icons-material/Image';
-import VideoIcon from '@mui/icons-material/SlowMotionVideo';
 import ProfileImage from './ProfileImage';
 import useCreatePost from '../hooks/useCreatePost';
+import AddIcon from '@mui/icons-material/Add';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectDisableScreen,
+  toggleDisableScreen,
+} from '../features/disableScreen';
+import { useEffect } from 'react';
 
 export default function CreatePost({ posts, setPosts, withPhoto }) {
+  const disableScreen = useSelector(selectDisableScreen);
+  const dispatch = useDispatch();
   const {
     inputs,
     handleChange,
@@ -21,7 +29,9 @@ export default function CreatePost({ posts, setPosts, withPhoto }) {
     setPosts,
     posts
   );
-
+  useEffect(() => {
+    dispatch(toggleDisableScreen(createPostModalVisible));
+  }, [createPostModalVisible]);
   return (
     <div className="create__post">
       <div className="create__post__top">
@@ -39,6 +49,11 @@ export default function CreatePost({ posts, setPosts, withPhoto }) {
 
         {createPostModalVisible && (
           <div className="create__post__modal">
+            <AddIcon
+              onClick={() => {
+                setCreatePostModalVisible(false);
+              }}
+            />
             <form className="create__post__form" onSubmit={handleSubmit}>
               <textarea
                 className="create__post__text"
@@ -49,7 +64,9 @@ export default function CreatePost({ posts, setPosts, withPhoto }) {
                 placeholder="Start a post"
               />
               <label htmlFor="image">
-                <ImageIcon style={{ color: '#0a66c2' }} />
+                <div style={{ textAlign: 'left' }}>
+                  <ImageIcon style={{ color: '#0a66c2' }} />
+                </div>
               </label>
               <input
                 style={{ display: 'none' }}

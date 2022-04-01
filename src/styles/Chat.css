@@ -6,7 +6,6 @@
   overflow: hidden;
   position: sticky;
   top: 80px;
-  padding: 16px;
   margin-left: 15px;
 }
 
@@ -15,6 +14,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
+  padding: 16px 16px 0 16px;
 }
 .chat__top > h3 {
   font-size: 16px;
@@ -23,14 +23,14 @@
 .chat__top > svg {
   height: 15px;
   width: 15px;
-  transition: all 0.5s ease;
+  transition: all 0.5s ease-in-out;
   border-radius: 50%;
   background: #2e67c2;
   color: white;
 }
 .rotate {
   transform: rotate(135deg);
-  background: red !important;
+  background: black !important;
 }
 .chat__top > svg:hover {
   cursor: pointer;
@@ -45,7 +45,6 @@
   padding: 16px;
   background-color: #d9afd9;
   background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
-  padding: 16px;
   color: rgb(48, 47, 47);
   display: flex;
   flex-direction: column;
@@ -74,14 +73,20 @@
 .recipient {
   font-size: 12px;
   /* background: lightgray; */
-  padding: 5px 0;
   border-radius: 5px;
   cursor: pointer;
   font-weight: 500;
-  margin: 8px 0;
+  margin: 8px;
   display: flex;
   justify-content: space-between;
+  margin: 8px;
+  padding: 5px 8px;
 }
+
+.recipient:hover {
+  background-color: #dfdeff;
+}
+
 .recipient > svg {
   height: 15px;
   color: #2e67c2;

@@ -89,7 +89,7 @@ export const Chat = React.memo(() => {
   return (
     <div className="chat">
       <div className="chat__top">
-        <h3>Chat</h3>
+        <h3>{selectUserToChatOpen ? 'New conversation' : 'Conversations'}</h3>
         <AddIcon
           className={selectUserToChatOpen ? 'rotate' : ''}
           onClick={async () => {

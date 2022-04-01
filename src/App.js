@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import Login from './components/Login';
 import { getUser } from './lib/getUser';
 import LoggedInUserProfilePage from './pages/LoggedInUserProfilePage';
+import DisabledOverlay from './components/DisabledOverlay';
 
 function App() {
   const dispatch = useDispatch();

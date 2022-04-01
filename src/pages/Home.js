@@ -5,6 +5,7 @@ import Login from '../components/Login';
 import { auth } from '../db/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectUser } from '../features/userSlice';
+import DisabledOverlay from '../components/DisabledOverlay';
 
 export default function Home() {
   const user = useSelector(selectUser);

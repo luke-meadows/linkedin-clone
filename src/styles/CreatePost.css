@@ -1,11 +1,34 @@
-.create__post {
-  padding: 10px;
+.create__post__modal {
+  z-index: 11;
+  background: white;
+  padding: 16px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  border-radius: 10px;
+  /* background: #000; */
+  transform: translate(-50%, -50%);
+  height: auto;
+  width: 500px;
+  text-align: right;
+}
 
+.create__post__modal > svg {
+  height: 15px;
+  width: 15px;
+  background: black;
+  color: white;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.create__post {
+  padding: 16px;
   background: white;
   border-radius: 10px;
   margin-bottom: 10px;
 }
-
 .create__post__top {
   display: flex;
   align-items: flex-start;
@@ -31,18 +54,6 @@
   cursor: pointer;
 }
 
-.create__post__modal {
-  background: white;
-  padding: 8px;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  border-radius: 10px;
-  /* background: #000; */
-  transform: translate(-50%, -50%);
-  height: auto;
-  width: 300px;
-}
 .create__post__form {
   display: flex;
   flex-direction: column;
