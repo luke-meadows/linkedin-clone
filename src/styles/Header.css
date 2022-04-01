@@ -3,7 +3,7 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  padding: 10px 0;
+  padding: 15px 0;
   border-bottom: 1px solid lightgray;
   background: white;
 }
@@ -47,6 +47,8 @@
   color: grey;
   background: #eef3f8;
   margin: 0 10px;
+
+  width: 205px;
 }
 
 .header__search > input {

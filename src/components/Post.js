@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { PostComments } from './PostComments';
 import { db } from '../db/firebase';
 import getPostComments from '../lib/getPostComments';
+import UserProfileLink from './UserProfileLink';
 export default function Post({
   text,
   image,
@@ -69,7 +70,7 @@ export default function Post({
             <Avatar />
           )}
           <div className="post__account__info">
-            <h6>{postOwner.username}</h6>
+            <UserProfileLink user={postOwner} />
             <p>10 followers</p>
             <p>{time}</p>
           </div>
@@ -122,7 +123,7 @@ export default function Post({
                 handleCommentSubmit(
                   e,
                   postId,
-                  loggedInUser.uid,
+                  loggedInUser.userId,
                   postComments,
                   setPostComments
                 )

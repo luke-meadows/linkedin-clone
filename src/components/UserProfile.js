@@ -8,10 +8,7 @@ import { useEffect, useState } from 'react';
 import { db } from '../db/firebase';
 import { calculatePostTime } from '../lib/calculatePostTime';
 import Post from './Post';
-export default function UserProfile() {
-  const user = useSelector(selectUser);
-  console.log(user.uid);
-
+export default function UserProfile({ user }) {
   // Add user profile img hook
   const [setShowProfileImageModal, showProfileImageModal, ProfileImageModal] =
     useAddImage('profile');
@@ -22,7 +19,7 @@ export default function UserProfile() {
 
   useEffect(async () => {
     db.collection('posts')
-      .where('userId', '==', `${user.uid}`)
+      .where('userId', '==', `${user.userId}`)
       .orderBy('createdAt', 'desc')
       .limit(15)
       .onSnapshot((posts) => {
@@ -30,7 +27,7 @@ export default function UserProfile() {
       });
   }, [user]);
 
-  if (!user.bannerPic) return <h1>Loading...</h1>;
+  // if (!user.bannerPic) return <h1>Loading...</h1>;
   return (
     <div>
       <div className="profile__container">
@@ -40,8 +37,8 @@ export default function UserProfile() {
               className="profile__banner"
               onClick={() => setShowBannerImageModal(!showBannerImageModal)}
             >
-              {user.bannerPic && (
-                <img className="banner__image" src={user.bannerPic} alt="" />
+              {user.bannerImage && (
+                <img className="banner__image" src={user.bannerImage} alt="" />
               )}
             </div>
 

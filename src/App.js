@@ -9,6 +9,7 @@ import { login, logout } from './features/userSlice';
 import { useEffect } from 'react';
 import Login from './components/Login';
 import { getUser } from './lib/getUser';
+import LoggedInUserProfilePage from './pages/LoggedInUserProfilePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,12 +22,13 @@ function App() {
         dispatch(
           login({
             email: userCredential.email,
-            uid: userCredential.uid,
+            userId: userCredential.uid,
             displayName: userCredential.displayName,
             profilePic: userCredential.photoURL || '',
-            bannerPic: user.bannerImage || null,
+            bannerImage: user.bannerImage || null,
             firstName: user.firstName,
             lastName: user.lastName,
+            username: `${user.firstName} ${user.lastName}`,
           })
         );
       } else {
@@ -40,7 +42,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile" element={<LoggedInUserProfilePage />} />
+        <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>

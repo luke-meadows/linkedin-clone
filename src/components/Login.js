@@ -41,7 +41,7 @@ export default function Login() {
             dispatch(
               login({
                 email: userCredential.user.email,
-                uid: userCredential.user.uid,
+                userId: userCredential.user.uid,
                 displayName: loginDetails.firstName,
               })
             );
@@ -65,7 +65,7 @@ export default function Login() {
         dispatch(
           login({
             email: userCredential.user.email,
-            uid: userCredential.user.uid,
+            userId: userCredential.user.uid,
             firstName: user.firstName,
             lastName: user.lastName,
             displayName: userCredential.user.displayName,

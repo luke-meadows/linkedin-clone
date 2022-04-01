@@ -1,7 +1,7 @@
 .Header__Option {
   color: gray;
   text-align: center;
-  margin: 0 10px;
+  /* margin: 0 10px; */
   text-decoration: none;
   display: flex;
   flex-direction: column;

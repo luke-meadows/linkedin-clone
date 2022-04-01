@@ -9,5 +9,6 @@
   grid-template-columns: 20% 55% 25%;
 }
 .profile__grid {
-  grid-template-columns: 60% 40%;
+  width: 800px;
+  margin: 15px auto;
 }

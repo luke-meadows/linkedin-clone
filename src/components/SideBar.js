@@ -30,7 +30,7 @@ export default function SideBar({ logout }) {
             className="sidebar__top__banner"
             onClick={() => setShowBannerImageModal(!showBannerImageModal)}
           >
-            {user.bannerPic && <img src={user.bannerPic} alt="" />}
+            {user.bannerImage && <img src={user.bannerImage} alt="" />}
           </div>
 
           {user.profilePic ? (

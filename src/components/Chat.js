@@ -15,9 +15,8 @@ export const Chat = React.memo(() => {
   const [selectUserToChatOpen, setSelectUserToChatOpen] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
   useEffect(async () => {
-    // const userConversations = await getChats(loggedInUser.uid);
     db.collection('users')
-      .doc(loggedInUser.uid)
+      .doc(loggedInUser.userId)
       .collection('chats')
       .onSnapshot((querySnapshot) => {
         var returnedChats = [];
@@ -32,7 +31,7 @@ export const Chat = React.memo(() => {
   async function getAllUsers() {
     const users = await db
       .collection('users')
-      .where('userId', '!=', loggedInUser.uid)
+      .where('userId', '!=', loggedInUser.userId)
       .get();
     const userData = users.docs.map((doc) => doc.data());
     setAllUsers(userData);
@@ -69,11 +68,11 @@ export const Chat = React.memo(() => {
             .set({
               id: docRef.id,
               participant: `${loggedInUser.firstName} ${loggedInUser.lastName}`,
-              participantId: loggedInUser.uid,
+              participantId: loggedInUser.userId,
             });
           // add record in logged in user's user doc chats collection
           db.collection('users')
-            .doc(loggedInUser.uid)
+            .doc(loggedInUser.userId)
             .collection('chats')
             .doc()
             .set({

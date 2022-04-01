@@ -6,9 +6,11 @@ import firebase from 'firebase';
 import '../styles/Chat.css';
 import { selectUser } from '../features/userSlice';
 import { useSelector } from 'react-redux';
+import { profileLinkStyle } from './UserProfileLink';
+import { Link } from 'react-router-dom';
 
 export default function Conversation({ conversation, setActiveChat }) {
-  const user = useSelector(selectUser);
+  const loggedInUser = useSelector(selectUser);
   const [messageText, setMessageText] = useState('');
   const [messages, setMessages] = useState([]);
   const messagesRef = useRef();
@@ -43,7 +45,7 @@ export default function Conversation({ conversation, setActiveChat }) {
       .set({
         message: messageText,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        owner: user.uid,
+        owner: loggedInUser.userId,
       });
     setMessageText('');
   }
@@ -52,7 +54,12 @@ export default function Conversation({ conversation, setActiveChat }) {
     <div>
       <div className="conversation">
         <div className="conversation__top">
-          <h6>{conversation.participant}</h6>
+          <Link
+            style={profileLinkStyle}
+            to={`profile/${conversation.participantId}`}
+          >
+            {conversation.participant}
+          </Link>
           <CloseIcon onClick={() => setActiveChat(null)} />
         </div>
         <div>
@@ -63,7 +70,7 @@ export default function Conversation({ conversation, setActiveChat }) {
                 <p
                   key={key}
                   className={
-                    message.owner === user.uid
+                    message.owner === loggedInUser.userId
                       ? 'message sent'
                       : 'message received'
                   }
