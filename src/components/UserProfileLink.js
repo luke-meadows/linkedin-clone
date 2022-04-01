@@ -8,9 +8,7 @@ export const profileLinkStyle = {
   color: 'black',
 };
 export default function UserProfileLink({ user }) {
-  // direct logged in user to /profile
   const loggedInUser = useSelector(selectUser);
-  console.log(loggedInUser);
   const path =
     loggedInUser.userId === user.userId
       ? '/profile'

@@ -17,6 +17,7 @@ export default function ProfileImage({ withMargin }) {
             borderRadius: '50%',
             margin: ' 0 0 -2px 0 ',
             cursor: 'pointer',
+            objectFit: 'cover',
           }}
         />
       ) : (

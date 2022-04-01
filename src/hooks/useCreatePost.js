@@ -15,7 +15,7 @@ export default function useCreatePost(initialState = {}, setPosts, posts) {
   const initialPostData = {
     likeCount: 0,
     commentCount: 0,
-    userId: user.uid,
+    userId: user.userId,
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
   };
   // Listen for image and create preview if present

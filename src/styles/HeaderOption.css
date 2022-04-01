@@ -20,7 +20,8 @@
 }
 
 .Header__Option > img {
-  object-fit: contain;
+  object-fit: cover;
   height: 45px;
+  width: 45px;
   border-radius: 50%;
 }

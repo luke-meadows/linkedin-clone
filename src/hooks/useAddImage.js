@@ -84,6 +84,9 @@ export default function useAddImage(imageToBeUpdated) {
 
       if (imageToBeUpdated === 'banner') {
         // Update the users collection with profile img.
+        user.updateProfile({
+          bannerImage: URL,
+        });
         db.collection('users').doc(auth.currentUser.uid).set(
           {
             bannerImage: URL,

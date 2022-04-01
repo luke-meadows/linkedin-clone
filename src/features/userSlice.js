@@ -16,7 +16,7 @@ export const userSlice = createSlice({
       state.user.profilePic = action.payload;
     },
     changeBannerImg: (state, action) => {
-      state.user.bannerPic = action.payload;
+      state.user.bannerImage = action.payload;
     },
   },
 });

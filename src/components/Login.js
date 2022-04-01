@@ -116,6 +116,7 @@ export default function Login() {
               className="login__input"
               type="email"
               name="email"
+              placeholder="Email"
               value={loginDetails.email}
               onChange={(e) =>
                 setLoginDetails({
@@ -128,6 +129,7 @@ export default function Login() {
               className="login__input"
               type="password"
               name="password"
+              placeholder="Password"
               value={loginDetails.password}
               onChange={(e) =>
                 setLoginDetails({
@@ -175,7 +177,7 @@ export default function Login() {
               className="login__input"
               type="password"
               name="password"
-              placeholder="password"
+              placeholder="Password"
               value={loginDetails.password}
               onChange={(e) =>
                 setLoginDetails({

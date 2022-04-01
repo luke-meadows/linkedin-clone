@@ -135,8 +135,10 @@
   background: #eef3f8;
   border: none;
   outline: none;
-  width: 170px;
+  width: 100%;
   font-family: monospace;
+  margin-right: 10px;
+  box-sizing: border-box;
 }
 .conversation__form > button {
   border-radius: 30px;
