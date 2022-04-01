@@ -35,7 +35,7 @@ export default function Post({
   useEffect(async () => {
     // Fetch the user data (name and profile image) from the user collection using userID
     const user = await getUser(userId);
-    const hasLiked = await hasUserLikedPost(postId, loggedInUser.uid);
+    const hasLiked = await hasUserLikedPost(postId, loggedInUser.userId);
 
     setUserLikedPost(hasLiked);
     setPostOwner(user);

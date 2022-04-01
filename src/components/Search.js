@@ -80,6 +80,7 @@ export default function Search() {
             <Link
               onClick={() => {
                 dispatch(toggleDisableScreen(false));
+
                 setSearchTerm('');
               }}
               to={`/profile/${user.userId}`}
