@@ -1,9 +1,9 @@
 import '../styles/Header.css';
-import SearchIcon from '@mui/icons-material/Search';
 import HeaderOption from './HeaderOption';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
+import Search from './Search';
 export default function Header() {
   const loggedInUser = useSelector(selectUser);
   return (
@@ -17,10 +17,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="header__right">
-          <div className="header__search">
-            <SearchIcon />
-            <input type="text" placeholder="Search" />
-          </div>
+          <Search />
           {loggedInUser && (
             <HeaderOption avatar={loggedInUser.profilePic} url="/profile" />
           )}
