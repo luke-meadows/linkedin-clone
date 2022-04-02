@@ -2,19 +2,21 @@ import { useEffect, useState } from 'react';
 import UserProfileLink from '../components/UserProfileLink';
 import PinDropIcon from '@mui/icons-material/PinDrop';
 import GroupIcon from '@mui/icons-material/Group';
-import CheckIcon from '@mui/icons-material/Check';
 import { getUsers } from '../lib/getUser';
 import '../styles/Network.css';
+import FollowingButton from '../components/FollowingButton';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
+import { db } from '../db/firebase';
+import FollowerCount from '../components/FollowerCount';
 export default function Network() {
-  const [following, setFollowing] = useState(false);
+  const loggedInUserId = useSelector(selectUser).userId;
   const [users, setUsers] = useState([]);
   useEffect(async () => {
     const users = await getUsers();
     setUsers(users);
   }, []);
-  useEffect(() => {
-    console.log(following);
-  }, [following]);
+
   return (
     <div className="network__container">
       {users?.map((user) => {
@@ -35,22 +37,19 @@ export default function Network() {
                   </span>
                   London
                 </div>
-                <p className="followers">
+                <div className="followers">
                   <span>
                     <GroupIcon />
                   </span>
-                  200 followers
-                </p>
-                <button
-                  className={
-                    following ? 'following follow__button' : 'follow__button'
-                  }
-                  onClick={() => setFollowing(!following)}
-                >
-                  <CheckIcon className={following ? 'following' : ''} />
-                  Follow
-                  <span className={following ? 'following' : ''}>ing</span>
-                </button>
+                  {/* {user.followerCount} follower
+                  
+                  {user.followerCount === 1 ? '' : 's'} */}
+                  <FollowerCount userId={user.userId} />
+                </div>
+                <FollowingButton
+                  loggedInUserId={loggedInUserId}
+                  otherUserId={user.userId}
+                />
               </div>
             </div>
           </div>
