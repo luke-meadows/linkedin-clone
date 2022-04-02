@@ -1,7 +1,7 @@
 .Header__Option {
   color: gray;
   text-align: center;
-  /* margin: 0 10px; */
+  margin-left: 10px;
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
   color: black;
 }
 
-.Header__Option > h3 {
+.Header__Option > p {
   font-size: 12px;
   font-weight: 400;
 }
@@ -24,4 +24,10 @@
   height: 45px;
   width: 45px;
   border-radius: 50%;
+}
+
+.Header__Option > svg {
+  height: 30px;
+  width: 30px;
+  /* border: 1px solid blue; */
 }

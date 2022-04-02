@@ -8,6 +8,7 @@ import {
   toggleDisableScreen,
 } from '../features/disableScreen';
 import { Link } from 'react-router-dom';
+import { getUsers } from '../lib/getUser';
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -31,8 +32,8 @@ export default function Search() {
     // First fetch all users if no users set when user types.
     if (searchTerm.length === 1) {
       dispatch(toggleDisableScreen(!disableScreen));
-      const getUsers = await db.collection('users').get();
-      const userData = getUsers.docs.map((doc) => doc.data());
+
+      const userData = await getUsers();
       setAllUsers(userData);
     }
 

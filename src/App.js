@@ -11,6 +11,7 @@ import Login from './components/Login';
 import { getUser } from './lib/getUser';
 import LoggedInUserProfilePage from './pages/LoggedInUserProfilePage';
 import DisabledOverlay from './components/DisabledOverlay';
+import Network from './pages/Network';
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function App() {
         <Route path="/profile" element={<LoggedInUserProfilePage />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/network" element={<Network />} />
       </Routes>
     </div>
   );
