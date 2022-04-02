@@ -5,13 +5,14 @@ export default function ExistingChats({ conversations, setActiveChat }) {
       {conversations.map((convo) => {
         const key = uuidv4();
         return (
-          <p
+          <div
             className="recipient"
             key={key}
             onClick={() => setActiveChat(convo)}
           >
-            {convo.participant}
-          </p>
+            <p>{convo.participant}</p>
+            {convo.notifications && <span>{convo.notifications}</span>}
+          </div>
         );
       })}
     </div>

@@ -25,7 +25,6 @@ export const Chat = React.memo(() => {
         });
         setConversations(returnedChats);
       });
-    // const chatIds = getChatIds.docs.map((doc) => doc.data());
   }, []);
 
   async function getAllUsers() {
