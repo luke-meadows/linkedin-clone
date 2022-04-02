@@ -7,6 +7,7 @@ import Search from './Search';
 import DisabledOverlay from './DisabledOverlay';
 import { selectDisableScreen } from '../features/disableScreen';
 import NetworkIcon from '@mui/icons-material/ConnectWithoutContact';
+import PersonIcon from '@mui/icons-material/Person';
 export default function Header() {
   // Current logged in user
   const loggedInUser = useSelector(selectUser);
@@ -27,10 +28,11 @@ export default function Header() {
         <div className="header__right">
           <Search />
           <HeaderOption Icon={NetworkIcon} url="/network" header="Network" />
+          <HeaderOption Icon={PersonIcon} url="/profile" header="Profile" />
 
-          {loggedInUser && (
+          {/* {loggedInUser && (
             <HeaderOption avatar={loggedInUser.profilePic} url="/profile" />
-          )}
+          )} */}
         </div>
       </div>
     </div>

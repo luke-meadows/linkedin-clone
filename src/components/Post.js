@@ -85,7 +85,7 @@ export default function Post({
           </div>
           <div className="post__comments__counter">
             <p onClick={() => setShowAddComment(!showAddComment)}>
-              {comments} comments
+              {comments} comment{comments === 1 ? '' : 's'}
             </p>
           </div>
         </div>

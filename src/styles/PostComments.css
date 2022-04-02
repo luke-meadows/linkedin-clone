@@ -1,8 +1,8 @@
 .comments__container {
   margin-top: 12px;
-  background-color: #d9afd9;
-  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
-  padding: 10px;
+  /* background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%); */
+  /* padding: 10px; */
   overflow: scroll;
   max-height: 250px;
   border-radius: 5px;
@@ -12,7 +12,7 @@
   margin: 10px 0;
   padding: 10px;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.395);
+  background: rgba(156, 156, 156, 0.395);
 }
 .comment__header {
   display: flex;
