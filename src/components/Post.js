@@ -92,7 +92,7 @@ export default function Post({
         <div className="post__icons">
           <div
             className="icon__container"
-            onClick={() => handlePostLike(postId, loggedInUser.uid)}
+            onClick={() => handlePostLike(postId, loggedInUser.userId)}
           >
             <ThumbUpIcon
               style={userLikedPost ? { color: '#0a66c2' } : { color: 'gray' }}

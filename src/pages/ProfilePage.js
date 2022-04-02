@@ -10,7 +10,7 @@ export default function ProfilePage() {
   useEffect(async () => {
     const user = await getUser(userId);
     setUser(user);
-  }, []);
+  }, [userId]);
   if (!user) return <p>Loading</p>;
   return (
     <div className="app__body profile__grid">

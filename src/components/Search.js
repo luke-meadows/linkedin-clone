@@ -79,8 +79,8 @@ export default function Search() {
           {results?.map((user) => (
             <Link
               onClick={() => {
+                console.log('click');
                 dispatch(toggleDisableScreen(false));
-
                 setSearchTerm('');
               }}
               to={`/profile/${user.userId}`}
