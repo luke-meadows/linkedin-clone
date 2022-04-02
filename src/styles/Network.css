@@ -134,9 +134,34 @@
   text-align: center;
 }
 .follow__button {
-  background: #2e67c2;
+  background: #4978c3;
   color: white;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease-in-out;
+}
+
+.follow__button > svg {
+  height: 15px;
+  width: 15px;
+  transition: all 0.4s ease-in-out;
+  opacity: 0;
+}
+.follow__button > span {
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.following > span,
+.following > svg {
+  background: #2e67c2;
+  opacity: 1;
+}
+.following {
+  background: #2e67c2;
+  opacity: 1;
 }
 
 .location,
