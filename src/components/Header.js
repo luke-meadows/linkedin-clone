@@ -26,7 +26,7 @@ export default function Header() {
         </div>
         <div className="header__right">
           <Search />
-          <HeaderOption Icon={NetworkIcon} url="/profile" header="Network" />
+          <HeaderOption Icon={NetworkIcon} url="/network" header="Network" />
 
           {loggedInUser && (
             <HeaderOption avatar={loggedInUser.profilePic} url="/profile" />
