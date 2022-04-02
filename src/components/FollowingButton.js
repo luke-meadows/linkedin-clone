@@ -12,8 +12,12 @@ import {
   removeFollowing,
 } from '../lib/handleFollow';
 
-export default function FollowingButton({ loggedInUserId, otherUserId }) {
-  const [following, setFollowing] = useState(false);
+export default function FollowingButton({
+  loggedInUserId,
+  otherUserId,
+  width,
+}) {
+  const [following, setFollowing] = useState(null);
 
   useEffect(async () => {
     if (!loggedInUserId) return;
@@ -37,6 +41,7 @@ export default function FollowingButton({ loggedInUserId, otherUserId }) {
 
   return (
     <button
+      style={{ width: width }}
       className={following ? 'following follow__button' : 'follow__button'}
       onClick={handleClick}
     >

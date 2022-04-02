@@ -49,6 +49,7 @@ export default function Network() {
                 <FollowingButton
                   loggedInUserId={loggedInUserId}
                   otherUserId={user.userId}
+                  width="80%"
                 />
               </div>
             </div>

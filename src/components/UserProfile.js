@@ -1,6 +1,4 @@
 import '../styles/UserProfile.css';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../features/userSlice';
 import { Avatar } from '@mui/material';
 import useAddImage from '../hooks/useAddImage';
 import CreatePost from '../components/CreatePost';
@@ -8,7 +6,13 @@ import { useEffect, useState } from 'react';
 import { db } from '../db/firebase';
 import { calculatePostTime } from '../lib/calculatePostTime';
 import Post from './Post';
+import FollowingButton from './FollowingButton';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
+import FollowerCount from './FollowerCount';
 export default function UserProfile({ user }) {
+  const loggedInUserId = useSelector(selectUser).userId;
+  console.log({ loggedInUserId });
   // Add user profile img hook
   const [setShowProfileImageModal, showProfileImageModal, ProfileImageModal] =
     useAddImage('profile');
@@ -66,6 +70,25 @@ export default function UserProfile({ user }) {
             <h2 className="user__display__name">
               {user.firstName + ' ' + user.lastName}
             </h2>
+            {/* If on personal profile show followers else show button to follow */}
+            {loggedInUserId != user.userId ? (
+              <div className="following__container">
+                <div className="follow__button__container">
+                  <FollowingButton
+                    loggedInUserId={loggedInUserId}
+                    otherUserId={user.userId}
+                    width="120px"
+                  />
+                </div>
+                <div className="follower__count">
+                  <FollowerCount userId={user.userId} />
+                </div>
+              </div>
+            ) : (
+              <div className="follower__count">
+                <FollowerCount userId={loggedInUserId} />
+              </div>
+            )}
           </div>
         </div>
         <CreatePost />

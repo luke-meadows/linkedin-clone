@@ -43,7 +43,7 @@
 .profile {
   background-size: cover;
   background-position: center center;
-  background-color: whitesmoke;
+  background-color: white;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -68,7 +68,7 @@
   transform: translate(0%, 50%);
   bottom: 25px;
   border-radius: 50%;
-  border: 3px solid whitesmoke;
+  border: 3px solid white;
 }
 
 .bottom__section {
@@ -107,6 +107,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 80%;
 }
 .location > span > svg,
 .followers > span > svg {
@@ -123,8 +124,6 @@
   border: none;
   margin-left: 8px;
   height: 30px;
-  width: 120px;
-  width: 80%;
   margin: 0 auto;
   font-size: 10px;
   font-weight: 600;
@@ -132,6 +131,7 @@
   text-align: center;
 }
 .follow__button {
+  background: white;
   border: 1px solid #2e67c2;
   color: #2e67c2;
   font-weight: 600;

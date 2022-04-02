@@ -5,6 +5,7 @@ export default function FollowerCount({ userId }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (!userId) return;
     const getFollowerCount = db
       .collection('users')
       .doc(userId)

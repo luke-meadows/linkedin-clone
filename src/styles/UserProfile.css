@@ -39,7 +39,38 @@
   height: 100px;
   object-fit: cover;
 }
+.user__display__name {
+  margin-right: 16px;
+}
 .profile__container__bottom {
   margin-top: 50px;
   padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.follow__button__container {
+  height: 30px;
+}
+
+.follower__count {
+  border: 1px solid #2e67c2;
+  color: #2e67c2;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 5px 15px;
+  height: 30px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 8px;
+  width: 120px;
+}
+
+.following__container {
+  display: flex;
+  align-items: center;
 }
