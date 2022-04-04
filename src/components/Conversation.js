@@ -8,6 +8,7 @@ import { selectUser } from '../features/userSlice';
 import { useSelector } from 'react-redux';
 import { profileLinkStyle } from './UserProfileLink';
 import { Link } from 'react-router-dom';
+import { clearNotifications } from '../lib/clearNotifications';
 
 export default function Conversation({ conversation, setActiveChat }) {
   const loggedInUser = useSelector(selectUser);
@@ -31,6 +32,10 @@ export default function Conversation({ conversation, setActiveChat }) {
       });
     return () => getChats();
   }, []);
+
+  useEffect(() => {
+    clearNotifications(conversation.participantId, loggedInUser.userId);
+  }, [messages]);
 
   useEffect(() => {
     messagesRef.current.scrollTop = messagesRef.current.scrollHeight;

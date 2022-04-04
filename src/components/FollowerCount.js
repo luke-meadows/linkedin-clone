@@ -10,14 +10,13 @@ export default function FollowerCount({ userId }) {
       .collection('users')
       .doc(userId)
       .onSnapshot((querySnapshot) => {
-        console.log(querySnapshot.data().followerCount);
         setCount(querySnapshot.data().followerCount);
       });
     return () => getFollowerCount();
   }, []);
   return (
-    <p>
+    <>
       {count} follower{count === 1 ? '' : 's'}
-    </p>
+    </>
   );
 }

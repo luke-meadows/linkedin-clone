@@ -26,6 +26,7 @@ export const Chat = React.memo(() => {
         setConversations(returnedChats);
       });
   }, []);
+  console.log(conversations);
 
   async function getAllUsers() {
     const users = await db
@@ -63,7 +64,7 @@ export const Chat = React.memo(() => {
           db.collection('users')
             .doc(recipient.userId)
             .collection('chats')
-            .doc()
+            .doc(loggedInUser.userId)
             .set({
               id: docRef.id,
               participant: `${loggedInUser.firstName} ${loggedInUser.lastName}`,
@@ -73,7 +74,7 @@ export const Chat = React.memo(() => {
           db.collection('users')
             .doc(loggedInUser.userId)
             .collection('chats')
-            .doc()
+            .doc(recipient.userId)
             .set({
               id: docRef.id,
               participant: recipient.username,

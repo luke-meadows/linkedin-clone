@@ -11,7 +11,7 @@ export default function ExistingChats({ conversations, setActiveChat }) {
             onClick={() => setActiveChat(convo)}
           >
             <p>{convo.participant}</p>
-            {convo.notifications && <span>{convo.notifications}</span>}
+            {convo.notifications > 0 && <span>{convo.notifications}</span>}
           </div>
         );
       })}
