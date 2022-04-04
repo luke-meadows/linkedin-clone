@@ -59,10 +59,10 @@ export default function UserProfile({ user }) {
             />
           )}
         </div>
-
+        // move these to app level and add redux state to manage it
         {showProfileImageModal && <ProfileImageModal />}
         {showBannerImageModal && <BannerImageModal />}
-
+        // ----------
         <div className="profile__container__bottom">
           <h2 className="user__display__name">{user.username}</h2>
           {/* If on personal profile show followers else show button to follow */}
@@ -85,7 +85,6 @@ export default function UserProfile({ user }) {
             </div>
           )}
         </div>
-
         <CreatePost />
       </div>
       <div className="feed__container">

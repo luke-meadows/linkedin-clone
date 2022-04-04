@@ -6,6 +6,7 @@ import { selectUser } from '../features/userSlice';
 import Search from './Search';
 import DisabledOverlay from './DisabledOverlay';
 import { selectDisableScreen } from '../features/disableScreen';
+import { selectAddPhoto } from '../features/addPhoto';
 import NetworkIcon from '@mui/icons-material/ConnectWithoutContact';
 import PersonIcon from '@mui/icons-material/Person';
 export default function Header() {
@@ -16,6 +17,7 @@ export default function Header() {
 
   return (
     <div className="header">
+      {isScreenDisabled && <DisabledOverlay />}
       {isScreenDisabled && <DisabledOverlay />}
       <div className="header__container">
         <div className="header__left">
