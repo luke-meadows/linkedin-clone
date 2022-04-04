@@ -35,6 +35,7 @@ export default function Login() {
             email: loginDetails.email,
             userId: auth.currentUser.uid,
             username: loginDetails.firstName + ' ' + loginDetails.lastName,
+            followerCount: 0,
           })
           // Save user info to redux
           .then(() => {

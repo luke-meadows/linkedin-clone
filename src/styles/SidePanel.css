@@ -1,0 +1,7 @@
+.side__panel {
+  height: calc(100vh - 108px);
+  margin-right: 15px;
+  border-radius: 10px;
+  position: sticky;
+  top: 94px;
+}

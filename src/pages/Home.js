@@ -1,11 +1,11 @@
 import SideBar from '../components/SideBar';
 import Feed from '../components/Feed';
-import { Chat } from '../components/Chat';
 import Login from '../components/Login';
 import { auth } from '../db/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectUser } from '../features/userSlice';
-import DisabledOverlay from '../components/DisabledOverlay';
+import SidePanel from '../components/SidePanel';
+import { Chat } from '../components/Chat';
 
 export default function Home() {
   const user = useSelector(selectUser);
@@ -28,10 +28,14 @@ export default function Home() {
       {!user && <Login />}
       {user?.email && (
         <div className="app__body home__grid">
-          <div className="side__panel">
+          {/* <div className="side__panel">
             <SideBar logout={signOut} />
             <Chat />
-          </div>
+          </div> */}
+          <SidePanel>
+            <SideBar logout={signOut} />
+            <Chat />
+          </SidePanel>
           <Feed />
         </div>
       )}

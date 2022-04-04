@@ -2,11 +2,10 @@
   background: white;
   border-radius: 10px;
   position: relative;
-  height: 385px;
+  height: 374px;
   overflow: hidden;
 
   margin-top: 15px;
-  margin-right: 15px;
 }
 
 .chat__top {
@@ -109,7 +108,7 @@
 
 .conversation__messages {
   height: fit-content;
-  max-height: 290px;
+  max-height: 260px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;

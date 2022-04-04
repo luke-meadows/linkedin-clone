@@ -11,9 +11,8 @@ import { selectUser } from '../features/userSlice';
 import handlePostLike from '../lib/handlePostLike';
 import hasUserLikedPost from '../lib/hasUserLikedPost';
 import useAddComment from '../hooks/useAddComment';
-import { v4 as uuidv4 } from 'uuid';
+import FollowerCount from '../components/FollowerCount';
 import { PostComments } from './PostComments';
-import { db } from '../db/firebase';
 import getPostComments from '../lib/getPostComments';
 import UserProfileLink from './UserProfileLink';
 export default function Post({
@@ -71,7 +70,9 @@ export default function Post({
           )}
           <div className="post__account__info">
             <UserProfileLink user={postOwner} />
-            <p>10 followers</p>
+            <p>
+              <FollowerCount userId={postOwner.userId} />
+            </p>
             <p>{time}</p>
           </div>
         </div>
