@@ -8,7 +8,10 @@ import { selectUser } from '../features/userSlice';
 import { useSelector } from 'react-redux';
 import { profileLinkStyle } from './UserProfileLink';
 import { Link } from 'react-router-dom';
-import { clearNotifications } from '../lib/clearNotifications';
+import {
+  addNotification,
+  clearNotifications,
+} from '../lib/messageNotifications';
 
 export default function Conversation({ conversation, setActiveChat }) {
   const loggedInUser = useSelector(selectUser);
@@ -53,6 +56,7 @@ export default function Conversation({ conversation, setActiveChat }) {
         owner: loggedInUser.userId,
       });
     setMessageText('');
+    addNotification(conversation.participantId, loggedInUser.userId);
   }
 
   return (
