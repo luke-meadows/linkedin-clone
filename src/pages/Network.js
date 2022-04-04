@@ -7,13 +7,12 @@ import '../styles/Network.css';
 import FollowingButton from '../components/FollowingButton';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
-import { db } from '../db/firebase';
 import FollowerCount from '../components/FollowerCount';
 export default function Network() {
   const loggedInUserId = useSelector(selectUser).userId;
   const [users, setUsers] = useState([]);
   useEffect(async () => {
-    const users = await getUsers();
+    const users = await getUsers(loggedInUserId);
     setUsers(users);
   }, []);
 

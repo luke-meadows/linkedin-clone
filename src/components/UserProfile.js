@@ -31,66 +31,62 @@ export default function UserProfile({ user }) {
       });
   }, [user]);
 
-  // if (!user.bannerPic) return <h1>Loading...</h1>;
   return (
     <div>
       <div className="profile__container">
-        <div className="user__profile__left__top">
-          <div className="profile__container__top">
-            <div
-              className="profile__banner"
-              onClick={() => setShowBannerImageModal(!showBannerImageModal)}
-            >
-              {user.bannerImage && (
-                <img className="banner__image" src={user.bannerImage} alt="" />
-              )}
-            </div>
-
-            {/* Display user image if there is one set */}
-            {user.profilePic ? (
-              <img
-                className="profile__image"
-                src={user.profilePic}
-                alt=""
-                onClick={() => setShowProfileImageModal(!showProfileImageModal)}
-              />
-            ) : (
-              <Avatar
-                className="profile__image"
-                style={{ width: '100px', height: '100px' }}
-                onClick={() => setShowProfileImageModal(!showProfileImageModal)}
-              />
+        <div className="profile__container__top">
+          <div
+            className="profile__banner"
+            onClick={() => setShowBannerImageModal(!showBannerImageModal)}
+          >
+            {user.bannerImage && (
+              <img className="banner__image" src={user.bannerImage} alt="" />
             )}
           </div>
 
-          {showProfileImageModal && <ProfileImageModal />}
-          {showBannerImageModal && <BannerImageModal />}
-
-          <div className="profile__container__bottom">
-            <h2 className="user__display__name">
-              {user.firstName + ' ' + user.lastName}
-            </h2>
-            {/* If on personal profile show followers else show button to follow */}
-            {loggedInUserId != user.userId ? (
-              <div className="following__container">
-                <div className="follow__button__container">
-                  <FollowingButton
-                    loggedInUserId={loggedInUserId}
-                    otherUserId={user.userId}
-                    width="120px"
-                  />
-                </div>
-                <div className="follower__count">
-                  <FollowerCount userId={user.userId} />
-                </div>
-              </div>
-            ) : (
-              <div className="follower__count">
-                <FollowerCount userId={loggedInUserId} />
-              </div>
-            )}
-          </div>
+          {/* Display user image if there is one set */}
+          {user.profilePic ? (
+            <img
+              className="profile__image"
+              src={user.profilePic}
+              alt=""
+              onClick={() => setShowProfileImageModal(!showProfileImageModal)}
+            />
+          ) : (
+            <Avatar
+              className="profile__image"
+              style={{ width: '100px', height: '100px' }}
+              onClick={() => setShowProfileImageModal(!showProfileImageModal)}
+            />
+          )}
         </div>
+
+        {showProfileImageModal && <ProfileImageModal />}
+        {showBannerImageModal && <BannerImageModal />}
+
+        <div className="profile__container__bottom">
+          <h2 className="user__display__name">{user.username}</h2>
+          {/* If on personal profile show followers else show button to follow */}
+          {loggedInUserId != user.userId ? (
+            <div className="following__container">
+              <div className="follow__button__container">
+                <FollowingButton
+                  loggedInUserId={loggedInUserId}
+                  otherUserId={user.userId}
+                  width="120px"
+                />
+              </div>
+              <div className="follower__count">
+                <FollowerCount userId={user.userId} />
+              </div>
+            </div>
+          ) : (
+            <div className="follower__count">
+              <FollowerCount userId={loggedInUserId} />
+            </div>
+          )}
+        </div>
+
         <CreatePost />
       </div>
       <div className="feed__container">

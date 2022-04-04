@@ -43,6 +43,7 @@ export default function Login() {
                 email: userCredential.user.email,
                 userId: userCredential.user.uid,
                 displayName: loginDetails.firstName,
+                username: loginDetails.firstName + ' ' + loginDetails.lastName,
               })
             );
           });
@@ -69,6 +70,7 @@ export default function Login() {
             firstName: user.firstName,
             lastName: user.lastName,
             displayName: userCredential.user.displayName,
+            username: `${user.firstName} ${user.lastName}`,
             profileImage: userCredential.user.photoURL || null,
             bannerPic: user.bannerImage || null,
           })
