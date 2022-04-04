@@ -12,7 +12,6 @@ import { selectUser } from '../features/userSlice';
 import FollowerCount from './FollowerCount';
 export default function UserProfile({ user }) {
   const loggedInUserId = useSelector(selectUser).userId;
-  console.log({ loggedInUserId });
   // Add user profile img hook
   const [setShowProfileImageModal, showProfileImageModal, ProfileImageModal] =
     useAddImage('profile');

@@ -19,6 +19,7 @@ body {
   --max-width: 1100px;
   --black: rgb(16, 16, 16);
   background: #8f8fff;
+  overscroll-behavior: none;
 }
 
 code {
