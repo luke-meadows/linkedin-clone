@@ -1,9 +1,9 @@
+import '../styles/Chat.css';
 import { useEffect, useRef, useState } from 'react';
 import { db } from '../db/firebase';
+import firebase from 'firebase';
 import { v4 as uuidv4 } from 'uuid';
 import CloseIcon from '@mui/icons-material/Close';
-import firebase from 'firebase';
-import '../styles/Chat.css';
 import { selectUser } from '../features/userSlice';
 import { useSelector } from 'react-redux';
 import { profileLinkStyle } from './UserProfileLink';
@@ -36,12 +36,10 @@ export default function Conversation({ conversation, setActiveChat }) {
     return () => getChats();
   }, []);
 
-  useEffect(() => {
-    clearNotifications(conversation.participantId, loggedInUser.userId);
-  }, [messages]);
-
+  // When messages load clear notifications and scroll to bottom of chat.
   useEffect(() => {
     messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+    clearNotifications(conversation.participantId, loggedInUser.userId);
   }, [messages]);
 
   function sendMessage(e) {
