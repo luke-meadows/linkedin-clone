@@ -42,6 +42,7 @@
   width: 100px;
   height: 100px;
   object-fit: cover;
+  border: 4px solid white;
 }
 .user__display__name {
   margin-right: 16px;
@@ -76,4 +77,9 @@
 .following__container {
   display: flex;
   align-items: center;
+}
+
+.pointer__events__off {
+  pointer-events: none;
+  cursor: initial;
 }

@@ -1,9 +1,8 @@
 import '../styles/Sidebar.css';
 import { Avatar } from '@mui/material';
-import BannerImage from '../assets/abstract-cosmic-gravity-field-with-2-planets-vector.jpeg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
-import useAddImage from '../hooks/useAddImage';
+import { showModal } from '../features/addPhoto';
 
 export default function SideBar({ logout }) {
   const user = useSelector(selectUser);
@@ -16,11 +15,15 @@ export default function SideBar({ logout }) {
     );
   };
 
-  // Add user profile img hook
-  const [setShowProfileImageModal, showProfileImageModal, ProfileImageModal] =
-    useAddImage('profile');
-  const [setShowBannerImageModal, showBannerImageModal, BannerImageModal] =
-    useAddImage('banner');
+  const dispatch = useDispatch();
+  function handleImageClick(e) {
+    dispatch(
+      showModal({
+        showModal: true,
+        photoToBeUpdated: e.currentTarget.dataset.imagetype,
+      })
+    );
+  }
 
   return (
     <>
@@ -28,7 +31,8 @@ export default function SideBar({ logout }) {
         <div className="sidebar__top">
           <div
             className="sidebar__top__banner"
-            onClick={() => setShowBannerImageModal(!showBannerImageModal)}
+            data-imagetype="banner"
+            onClick={handleImageClick}
           >
             {user.bannerImage && <img src={user.bannerImage} alt="" />}
           </div>
@@ -36,20 +40,22 @@ export default function SideBar({ logout }) {
           {user.profilePic ? (
             <img
               className="sidebar__profile__img"
+              data-imagetype="profile"
               src={user.profilePic}
               alt=""
-              onClick={() => setShowProfileImageModal(!showProfileImageModal)}
+              onClick={handleImageClick}
             />
           ) : (
             <Avatar
               className="sidebar__profile__img"
+              onClick={handleImageClick}
+              data-imagetype="profile"
               style={{
                 width: '60px',
                 height: '60px',
                 cursor: 'pointer',
                 border: '3px solid white',
               }}
-              onClick={() => setShowProfileImageModal(!showProfileImageModal)}
             />
           )}
           <h2>Welcome, {user.displayName}!</h2>
@@ -59,8 +65,6 @@ export default function SideBar({ logout }) {
           </button>
         </div>
       </div>
-      {showProfileImageModal && <ProfileImageModal />}
-      {showBannerImageModal && <BannerImageModal />}
     </>
   );
 }

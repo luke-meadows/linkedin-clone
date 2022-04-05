@@ -1,6 +1,5 @@
 import '../styles/UserProfile.css';
 import { Avatar } from '@mui/material';
-import useAddImage from '../hooks/useAddImage';
 import CreatePost from '../components/CreatePost';
 import { useEffect, useState } from 'react';
 import { db } from '../db/firebase';
@@ -14,6 +13,7 @@ import { showModal } from '../features/addPhoto';
 
 export default function UserProfile({ user }) {
   const loggedInUserId = useSelector(selectUser).userId;
+  const isThisLoggedInUserProfile = loggedInUserId === user.userId;
 
   const dispatch = useDispatch();
   function handleImageClick(e) {
@@ -42,7 +42,11 @@ export default function UserProfile({ user }) {
       <div className="profile__container">
         <div className="profile__container__top">
           <div
-            className="profile__banner"
+            className={
+              isThisLoggedInUserProfile
+                ? 'profile__banner '
+                : 'profile__banner pointer__events__off'
+            }
             data-imagetype="banner"
             onClick={handleImageClick}
           >
@@ -55,7 +59,11 @@ export default function UserProfile({ user }) {
           {user.profilePic ? (
             <img
               data-imagetype="profile"
-              className="profile__image"
+              className={
+                isThisLoggedInUserProfile
+                  ? 'profile__image '
+                  : 'profile__image pointer__events__off'
+              }
               src={user.profilePic}
               alt=""
               onClick={handleImageClick}
@@ -63,7 +71,11 @@ export default function UserProfile({ user }) {
           ) : (
             <Avatar
               data-imagetype="profile"
-              className="profile__image"
+              className={
+                isThisLoggedInUserProfile
+                  ? 'profile__image '
+                  : 'profile__image pointer__events__off'
+              }
               style={{ width: '100px', height: '100px' }}
               onClick={handleImageClick}
             />
@@ -73,7 +85,7 @@ export default function UserProfile({ user }) {
         <div className="profile__container__bottom">
           <h2 className="user__display__name">{user.username}</h2>
           {/* If on personal profile show followers else show button to follow */}
-          {loggedInUserId != user.userId ? (
+          {!isThisLoggedInUserProfile ? (
             <div className="following__container">
               <div className="follow__button__container">
                 <FollowingButton

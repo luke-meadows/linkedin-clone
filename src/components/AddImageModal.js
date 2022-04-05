@@ -117,7 +117,7 @@ export default function AddImageModal({ imageToBeUpdated }) {
   return (
     <div className="add__image__outer__modal" onClick={closeModal}>
       <div className="add__image__inner__modal">
-        <h3>Upload a profile image</h3>
+        <h3>Upload a {imageToBeUpdated} image</h3>
         {/* If loading return loading else return form */}
         {loading ? (
           <p>loading...</p>
