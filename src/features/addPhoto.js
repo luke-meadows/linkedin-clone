@@ -3,23 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 export const addPhoto = createSlice({
   name: 'addPhoto',
   initialState: {
-    addPhoto: false,
+    showModal: false,
+    photoToBeUpdated: '',
   },
   reducers: {
-    toggleAddPhoto: (state, action) => {
+    showModal: (state, action) => {
       state.addPhoto = action.payload;
     },
   },
 });
 
-export const { toggleAddPhoto } = addPhoto.actions;
-export const selectAddPhoto = (state) => state.addPhoto.addPhoto;
+export const { showModal } = addPhoto.actions;
+export const selectAddPhoto = (state) => state.addPhoto;
 export default addPhoto.reducer;
 
-// import { toggleAddPhoto } from '../features/addPhoto';
+// import { showModal } from '../features/addPhoto';
 
 // const dispatch = useDispatch();
 
-//dispatch(toggleAddPhoto());
+// dispatch(showModal());
 
 // const addPhoto = useSelector(selectAddPhoto); true / false

@@ -15,8 +15,8 @@ export default function FollowerCount({ userId }) {
     return () => getFollowerCount();
   }, []);
   return (
-    <>
+    <span>
       {count} follower{count === 1 ? '' : 's'}
-    </>
+    </span>
   );
 }

@@ -11,7 +11,6 @@ import {
 import { useEffect } from 'react';
 
 export default function CreatePost({ posts, setPosts, withPhoto }) {
-  const disableScreen = useSelector(selectDisableScreen);
   const dispatch = useDispatch();
   const {
     inputs,

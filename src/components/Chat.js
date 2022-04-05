@@ -26,7 +26,6 @@ export const Chat = React.memo(() => {
         setConversations(returnedChats);
       });
   }, []);
-  console.log(conversations);
 
   async function getAllUsers() {
     const users = await db

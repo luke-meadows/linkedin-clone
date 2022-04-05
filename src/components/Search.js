@@ -1,7 +1,7 @@
 import '../styles/Search.css';
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from 'react';
-import { db } from '../db/firebase';
+
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectDisableScreen,
@@ -9,6 +9,7 @@ import {
 } from '../features/disableScreen';
 import { Link } from 'react-router-dom';
 import { getUsers } from '../lib/getUser';
+import { selectUser } from '../features/userSlice';
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,7 +20,7 @@ export default function Search() {
 
   // This is the best free solution for searching as firebase does not currently support search. This option is not scalable as it relies on fetching all users, however for the purposes of this small project it is ok. LM.
   const dispatch = useDispatch();
-
+  const loggedInUserId = useSelector(selectUser).userId;
   useEffect(async () => {
     // Stops running when first rendered & clears results if user deleted search
     if (searchTerm.length === 0) {
@@ -33,7 +34,7 @@ export default function Search() {
     if (searchTerm.length === 1) {
       dispatch(toggleDisableScreen(!disableScreen));
 
-      const userData = await getUsers();
+      const userData = await getUsers(loggedInUserId);
       setAllUsers(userData);
     }
 

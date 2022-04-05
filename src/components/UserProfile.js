@@ -7,16 +7,29 @@ import { db } from '../db/firebase';
 import { calculatePostTime } from '../lib/calculatePostTime';
 import Post from './Post';
 import FollowingButton from './FollowingButton';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import FollowerCount from './FollowerCount';
+import { showModal } from '../features/addPhoto';
+
 export default function UserProfile({ user }) {
   const loggedInUserId = useSelector(selectUser).userId;
   // Add user profile img hook
-  const [setShowProfileImageModal, showProfileImageModal, ProfileImageModal] =
-    useAddImage('profile');
-  const [setShowBannerImageModal, showBannerImageModal, BannerImageModal] =
-    useAddImage('banner');
+  // const [setShowProfileImageModal, showProfileImageModal, ProfileImageModal] =
+  //   useAddImage('profile');
+  // const [setShowBannerImageModal, showBannerImageModal, BannerImageModal] =
+  //   useAddImage('banner');
+
+  const dispatch = useDispatch();
+  function handleImageClick(e) {
+    console.log('click');
+    dispatch(
+      showModal({
+        showModal: true,
+        photoToBeUpdated: e.target.dataset.imagetype,
+      })
+    );
+  }
 
   const [posts, setPosts] = useState();
 
@@ -36,7 +49,8 @@ export default function UserProfile({ user }) {
         <div className="profile__container__top">
           <div
             className="profile__banner"
-            onClick={() => setShowBannerImageModal(!showBannerImageModal)}
+            data-imagetype="profile"
+            onClick={handleImageClick}
           >
             {user.bannerImage && (
               <img className="banner__image" src={user.bannerImage} alt="" />
@@ -46,22 +60,24 @@ export default function UserProfile({ user }) {
           {/* Display user image if there is one set */}
           {user.profilePic ? (
             <img
+              data-imagetype="profile"
               className="profile__image"
               src={user.profilePic}
               alt=""
-              onClick={() => setShowProfileImageModal(!showProfileImageModal)}
+              onClick={handleImageClick}
             />
           ) : (
             <Avatar
+              data-imagetype="profile"
               className="profile__image"
               style={{ width: '100px', height: '100px' }}
-              onClick={() => setShowProfileImageModal(!showProfileImageModal)}
+              onClick={handleImageClick}
             />
           )}
         </div>
-        // move these to app level and add redux state to manage it
-        {showProfileImageModal && <ProfileImageModal />}
-        {showBannerImageModal && <BannerImageModal />}
+        {/* // move these to app level and add redux state to manage it */}
+        {/* {showProfileImageModal && <ProfileImageModal />}
+        {showBannerImageModal && <BannerImageModal />} */}
         // ----------
         <div className="profile__container__bottom">
           <h2 className="user__display__name">{user.username}</h2>
