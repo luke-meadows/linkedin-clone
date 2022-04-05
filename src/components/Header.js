@@ -1,26 +1,36 @@
 import '../styles/Header.css';
 import HeaderOption from './HeaderOption';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import Search from './Search';
 import DisabledOverlay from './DisabledOverlay';
-import { selectDisableScreen } from '../features/disableScreen';
+import {
+  selectDisableScreen,
+  toggleDisableScreen,
+} from '../features/disableScreen';
 import NetworkIcon from '@mui/icons-material/ConnectWithoutContact';
 import PersonIcon from '@mui/icons-material/Person';
 import AddImageModal from './AddImageModal';
 import { selectAddPhoto } from '../features/addPhoto';
+import { useEffect } from 'react';
 export default function Header() {
+  const dispatch = useDispatch();
   // Current logged in user
   const loggedInUser = useSelector(selectUser);
   // Screen is disabled with modal popup. Triggered from modal components.
   const isScreenDisabled = useSelector(selectDisableScreen);
   const addPhoto = useSelector(selectAddPhoto);
-  console.log(addPhoto);
+
   return (
     <>
       {isScreenDisabled && <DisabledOverlay />}
-      {addPhoto.showModal && <AddImageModal imageToBeUpdated="profile" />}
+      {addPhoto.showModal && (
+        <>
+          <DisabledOverlay />
+          <AddImageModal imageToBeUpdated={addPhoto.photoToBeUpdated} />
+        </>
+      )}
       <div className="header">
         <div className="header__container">
           <div className="header__left">
@@ -31,7 +41,7 @@ export default function Header() {
             </Link>
           </div>
           <div className="header__right">
-            <Search />
+            {loggedInUser && <Search />}
             <HeaderOption Icon={NetworkIcon} url="/network" header="Network" />
             <HeaderOption Icon={PersonIcon} url="/profile" header="Profile" />
 

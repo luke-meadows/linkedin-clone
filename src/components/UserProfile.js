@@ -14,19 +14,13 @@ import { showModal } from '../features/addPhoto';
 
 export default function UserProfile({ user }) {
   const loggedInUserId = useSelector(selectUser).userId;
-  // Add user profile img hook
-  // const [setShowProfileImageModal, showProfileImageModal, ProfileImageModal] =
-  //   useAddImage('profile');
-  // const [setShowBannerImageModal, showBannerImageModal, BannerImageModal] =
-  //   useAddImage('banner');
 
   const dispatch = useDispatch();
   function handleImageClick(e) {
-    console.log('click');
     dispatch(
       showModal({
         showModal: true,
-        photoToBeUpdated: e.target.dataset.imagetype,
+        photoToBeUpdated: e.currentTarget.dataset.imagetype,
       })
     );
   }
@@ -49,7 +43,7 @@ export default function UserProfile({ user }) {
         <div className="profile__container__top">
           <div
             className="profile__banner"
-            data-imagetype="profile"
+            data-imagetype="banner"
             onClick={handleImageClick}
           >
             {user.bannerImage && (
@@ -75,10 +69,7 @@ export default function UserProfile({ user }) {
             />
           )}
         </div>
-        {/* // move these to app level and add redux state to manage it */}
-        {/* {showProfileImageModal && <ProfileImageModal />}
-        {showBannerImageModal && <BannerImageModal />} */}
-        // ----------
+
         <div className="profile__container__bottom">
           <h2 className="user__display__name">{user.username}</h2>
           {/* If on personal profile show followers else show button to follow */}

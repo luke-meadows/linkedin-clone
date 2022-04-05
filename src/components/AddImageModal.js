@@ -4,6 +4,7 @@ import { auth, db } from '../db/firebase';
 import firebase from 'firebase';
 import { useDispatch } from 'react-redux';
 import { changeBannerImg, changeProfileImg } from '../features/userSlice';
+import { showModal } from '../features/addPhoto';
 export default function AddImageModal({ imageToBeUpdated }) {
   const dispatch = useDispatch();
   const [image, setImage] = useState('');
@@ -33,15 +34,22 @@ export default function AddImageModal({ imageToBeUpdated }) {
   }
 
   function closeModal(e) {
-    if (e.target.className === 'add__image__outer__modal')
-      //   setShowProfileImageModal(false);
+    if (e.target.className === 'add__image__outer__modal') {
+      dispatch(
+        showModal({
+          showModal: false,
+          photoToBeUpdated: '',
+        })
+      );
       setImage('');
+    }
   }
 
   async function uploadImage(e) {
     e.preventDefault();
     setLoading(true);
     const user = auth.currentUser;
+    console.log(user);
     // Create a ref and specify which storage directory img should save into
     const task = firebase
       .storage()
@@ -62,8 +70,8 @@ export default function AddImageModal({ imageToBeUpdated }) {
     // When upload is successful.
     const taskComplete = async () => {
       // Extract the Public URL.
+      console.log({ imageToBeUpdated });
       const URL = await task.snapshot.ref.getDownloadURL();
-      console.log(URL);
       if (imageToBeUpdated === 'profile') {
         // Update the userAuth with profile img.
         user.updateProfile({
@@ -95,7 +103,12 @@ export default function AddImageModal({ imageToBeUpdated }) {
         dispatch(changeBannerImg(URL));
       }
       setLoading(false);
-      //   setShowProfileImageModal(false);
+      dispatch(
+        showModal({
+          showModal: false,
+          photoToBeUpdated: '',
+        })
+      );
     };
 
     // At different stages of the upload perform separate functions.

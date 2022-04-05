@@ -8,7 +8,8 @@ export const addPhoto = createSlice({
   },
   reducers: {
     showModal: (state, action) => {
-      state.addPhoto = action.payload;
+      state.showModal = action.payload.showModal;
+      state.photoToBeUpdated = action.payload.photoToBeUpdated;
     },
   },
 });
