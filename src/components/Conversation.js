@@ -57,6 +57,25 @@ export default function Conversation({ conversation, setActiveChat }) {
     addNotification(conversation.participantId, loggedInUser.userId);
   }
 
+  function deleteChat() {
+    db.collection('users')
+      .doc(loggedInUser.userId)
+      .collection('chats')
+      .doc(conversation.participantId)
+      .delete();
+    db.collection('users')
+      .doc(conversation.participantId)
+      .collection('chats')
+      .doc(loggedInUser.userId)
+      .delete();
+    db.collection('chats').doc(conversation.id).delete();
+  }
+
+  function closeConversation() {
+    if (messages.length === 0) deleteChat();
+    setActiveChat(null);
+  }
+
   return (
     <div>
       <div className="conversation">
@@ -67,7 +86,7 @@ export default function Conversation({ conversation, setActiveChat }) {
           >
             {conversation.participant}
           </Link>
-          <CloseIcon onClick={() => setActiveChat(null)} />
+          <CloseIcon onClick={closeConversation} />
         </div>
         <div>
           <div className="conversation__messages" ref={messagesRef}>
