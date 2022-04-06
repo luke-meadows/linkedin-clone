@@ -4,6 +4,7 @@ import Post from './Post';
 import { useEffect, useState } from 'react';
 import { calculatePostTime } from '../lib/calculatePostTime';
 import { db } from '../db/firebase';
+import ScrollContainer from './ScrollContainer';
 
 export default function Feed() {
   const [posts, setPosts] = useState();
@@ -20,22 +21,24 @@ export default function Feed() {
   if (!posts) return <h6>loading</h6>;
   return (
     <div className="feed__container">
-      <CreatePost posts={posts} setPosts={setPosts} withPhoto />
-      {posts.map((post, i) => {
-        const time = calculatePostTime(post.createdAt);
-        return (
-          <Post
-            key={post.userId + i}
-            text={post.content}
-            image={post.image || null}
-            userId={post.userId}
-            likes={post.likeCount}
-            comments={post.commentCount}
-            time={time}
-            postId={post.postId}
-          />
-        );
-      })}
+      <ScrollContainer height={{ height: 'calc(100vh - 96px)' }}>
+        <CreatePost posts={posts} setPosts={setPosts} withPhoto />
+        {posts.map((post, i) => {
+          const time = calculatePostTime(post.createdAt);
+          return (
+            <Post
+              key={post.userId + i}
+              text={post.content}
+              image={post.image || null}
+              userId={post.userId}
+              likes={post.likeCount}
+              comments={post.commentCount}
+              time={time}
+              postId={post.postId}
+            />
+          );
+        })}
+      </ScrollContainer>
     </div>
   );
 }

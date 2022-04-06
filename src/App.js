@@ -12,8 +12,6 @@ import Login from './components/Login';
 import { getUser } from './lib/getUser';
 import LoggedInUserProfilePage from './pages/LoggedInUserProfilePage';
 import Network from './pages/Network';
-import ScrollContainer from './components/ScrollContainer';
-import { selectDisableScreen } from './features/disableScreen';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,19 +38,17 @@ function App() {
       }
     });
   }, []);
-  const isScreenDisabled = useSelector(selectDisableScreen);
+
   return (
     <div className="app">
       <Header />
-      <div className={isScreenDisabled ? 'disabled' : 'notDisabled'}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<LoggedInUserProfilePage />} />
-          <Route path="/profile/:id" element={<ProfilePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/network" element={<Network />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<LoggedInUserProfilePage />} />
+        <Route path="/profile/:id" element={<ProfilePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/network" element={<Network />} />
+      </Routes>
     </div>
   );
 }

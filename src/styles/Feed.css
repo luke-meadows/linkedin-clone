@@ -1,3 +1,6 @@
 .feed__container {
   width: 100%;
 }
+.disabled {
+  overflow-y: hidden;
+}
