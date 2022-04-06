@@ -1,6 +1,6 @@
 export default function DisabledOverlay() {
   const styles = {
-    position: 'absolute',
+    position: 'fixed',
     height: '100vh',
     width: '100vw',
     backgroundColor: 'rgba(0,0,0,0.8)',

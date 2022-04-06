@@ -1,7 +1,7 @@
 import '../styles/Header.css';
 import HeaderOption from './HeaderOption';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import Search from './Search';
 import DisabledOverlay from './DisabledOverlay';
@@ -13,9 +13,7 @@ import NetworkIcon from '@mui/icons-material/ConnectWithoutContact';
 import PersonIcon from '@mui/icons-material/Person';
 import AddImageModal from './AddImageModal';
 import { selectAddPhoto } from '../features/addPhoto';
-import { useEffect } from 'react';
 export default function Header() {
-  const dispatch = useDispatch();
   // Current logged in user
   const loggedInUser = useSelector(selectUser);
   // Screen is disabled with modal popup. Triggered from modal components.
