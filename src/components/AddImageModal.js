@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import { useDispatch } from 'react-redux';
 import { changeBannerImg, changeProfileImg } from '../features/userSlice';
 import { showModal } from '../features/addPhoto';
+import { toggleDisableScreen } from '../features/disableScreen';
 export default function AddImageModal({ imageToBeUpdated }) {
   const dispatch = useDispatch();
   const [image, setImage] = useState('');
@@ -41,6 +42,7 @@ export default function AddImageModal({ imageToBeUpdated }) {
           photoToBeUpdated: '',
         })
       );
+      dispatch(toggleDisableScreen(false));
       setImage('');
     }
   }
@@ -110,7 +112,7 @@ export default function AddImageModal({ imageToBeUpdated }) {
         })
       );
     };
-
+    dispatch(toggleDisableScreen(false));
     // At different stages of the upload perform separate functions.
     task.on('state_changed', taskInProgress, taskError, taskComplete);
   }

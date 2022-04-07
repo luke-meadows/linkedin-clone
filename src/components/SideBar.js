@@ -3,6 +3,7 @@ import { Avatar } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import { showModal } from '../features/addPhoto';
+import { toggleDisableScreen } from '../features/disableScreen';
 
 export default function SideBar({ logout }) {
   const user = useSelector(selectUser);
@@ -23,6 +24,7 @@ export default function SideBar({ logout }) {
         photoToBeUpdated: e.currentTarget.dataset.imagetype,
       })
     );
+    dispatch(toggleDisableScreen(true));
   }
 
   return (

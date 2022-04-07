@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import FollowerCount from './FollowerCount';
 import { showModal } from '../features/addPhoto';
+import ScrollContainer from './ScrollContainer';
 
 export default function UserProfile({ user }) {
   const loggedInUserId = useSelector(selectUser).userId;
@@ -106,23 +107,25 @@ export default function UserProfile({ user }) {
         </div>
         <CreatePost />
       </div>
-      <div className="feed__container">
-        {posts?.map((post, i) => {
-          const time = calculatePostTime(post.createdAt);
-          return (
-            <Post
-              key={post.userId + i}
-              text={post.content}
-              image={post.image || null}
-              userId={post.userId}
-              likes={post.likeCount}
-              comments={post.commentCount}
-              time={time}
-              postId={post.postId}
-            />
-          );
-        })}
-      </div>
+      <ScrollContainer>
+        <div className="feed__container">
+          {posts?.map((post, i) => {
+            const time = calculatePostTime(post.createdAt);
+            return (
+              <Post
+                key={post.userId + i}
+                text={post.content}
+                image={post.image || null}
+                userId={post.userId}
+                likes={post.likeCount}
+                comments={post.commentCount}
+                time={time}
+                postId={post.postId}
+              />
+            );
+          })}
+        </div>
+      </ScrollContainer>
     </div>
   );
 }

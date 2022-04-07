@@ -45,7 +45,7 @@ export default function CreatePost({ posts, setPosts, withPhoto }) {
         >
           What's on your mind?
         </div>
-
+        {/* // move this onto header */}
         {createPostModalVisible && (
           <div className="create__post__modal">
             <AddIcon
@@ -85,16 +85,6 @@ export default function CreatePost({ posts, setPosts, withPhoto }) {
             </form>
           </div>
         )}
-      </div>
-      <div className="create__post__bottom">
-        {/* <div className="post__icon">
-          <ImageIcon style={{ color: '#0a66c2' }} />
-          <p>Photo</p>
-        </div> */}
-        {/* <div className="post__icon">
-          <VideoIcon style={{ color: '#4fa44f' }} />
-          <p>Video</p>
-        </div> */}
       </div>
     </div>
   );

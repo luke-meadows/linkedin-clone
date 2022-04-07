@@ -28,10 +28,6 @@ export default function Home() {
       {!user && <Login />}
       {user?.email && (
         <div className="app__body home__grid">
-          {/* <div className="side__panel">
-            <SideBar logout={signOut} />
-            <Chat />
-          </div> */}
           <SidePanel>
             <SideBar logout={signOut} />
             <Chat />

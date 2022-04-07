@@ -24,10 +24,7 @@ export default function Header() {
     <>
       {isScreenDisabled && <DisabledOverlay />}
       {addPhoto.showModal && (
-        <>
-          <DisabledOverlay />
-          <AddImageModal imageToBeUpdated={addPhoto.photoToBeUpdated} />
-        </>
+        <AddImageModal imageToBeUpdated={addPhoto.photoToBeUpdated} />
       )}
       <div className="header">
         <div className="header__container">
