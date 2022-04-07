@@ -9,7 +9,7 @@ export default function ScrollContainer({ children, height }) {
 
   const containerRef = useRef();
   useEffect(() => {
-    const scrollY = window.scrollY;
+    const scrollY = document.scrollY;
 
     console.log(scrollY);
     updateScrollTo(scrollY);

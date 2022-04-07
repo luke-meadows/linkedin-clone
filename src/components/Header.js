@@ -5,19 +5,19 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import Search from './Search';
 import DisabledOverlay from './DisabledOverlay';
-import {
-  selectDisableScreen,
-  toggleDisableScreen,
-} from '../features/disableScreen';
+import { selectDisableScreen } from '../features/disableScreen';
 import NetworkIcon from '@mui/icons-material/ConnectWithoutContact';
 import PersonIcon from '@mui/icons-material/Person';
 import AddImageModal from './AddImageModal';
+import CreatePostModal from './CreatePostModal';
 import { selectAddPhoto } from '../features/addPhoto';
+import { selectCreatePost } from '../features/createPost';
 export default function Header() {
   // Current logged in user
   const loggedInUser = useSelector(selectUser);
   // Screen is disabled with modal popup. Triggered from modal components.
   const isScreenDisabled = useSelector(selectDisableScreen);
+  const showCreatePostModal = useSelector(selectCreatePost);
   const addPhoto = useSelector(selectAddPhoto);
 
   return (
@@ -26,6 +26,7 @@ export default function Header() {
       {addPhoto.showModal && (
         <AddImageModal imageToBeUpdated={addPhoto.photoToBeUpdated} />
       )}
+      {/* {showCreatePostModal && <CreatePostModal />} */}
       <div className="header">
         <div className="header__container">
           <div className="header__left">

@@ -3,11 +3,8 @@ import ImageIcon from '@mui/icons-material/Image';
 import ProfileImage from './ProfileImage';
 import useCreatePost from '../hooks/useCreatePost';
 import AddIcon from '@mui/icons-material/Add';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectDisableScreen,
-  toggleDisableScreen,
-} from '../features/disableScreen';
+import { useDispatch } from 'react-redux';
+import { toggleDisableScreen } from '../features/disableScreen';
 import { useEffect } from 'react';
 
 export default function CreatePost({ posts, setPosts, withPhoto }) {
