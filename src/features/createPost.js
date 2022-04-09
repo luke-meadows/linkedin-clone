@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const createPost = createSlice({
   name: 'createPost',
   initialState: {
-    createPost: true,
+    createPost: false,
   },
   reducers: {
     toggleCreatePost: (state, action) => {

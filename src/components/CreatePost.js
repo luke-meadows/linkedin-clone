@@ -1,44 +1,46 @@
 import '../styles/CreatePost.css';
 import ImageIcon from '@mui/icons-material/Image';
 import ProfileImage from './ProfileImage';
-zsdcx;
 import useCreatePost from '../hooks/useCreatePost';
 import AddIcon from '@mui/icons-material/Add';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleDisableScreen } from '../features/disableScreen';
 import { useEffect } from 'react';
+import { selectCreatePost } from '../features/createPost';
 
 export default function CreatePost({ posts, setPosts, withPhoto }) {
   const dispatch = useDispatch();
-  const {
-    inputs,
-    handleChange,
-    handleSubmit,
-    loading,
-    preview,
-    createPostModalVisible,
-    setCreatePostModalVisible,
-  } = useCreatePost(
-    {
-      post: '',
-      image: '',
-    },
-    setPosts,
-    posts
-  );
+  const toggleCreatePost = useSelector(selectCreatePost);
+
+  // const {
+  //   inputs,
+  //   handleChange,
+  //   handleSubmit,
+  //   loading,
+  //   preview,
+  //   createPostModalVisible,
+  //   setCreatePostModalVisible,
+  // } = useCreatePost(
+  //   {
+  //     post: '',
+  //     image: '',
+  //   },
+  //   setPosts,
+  //   posts
+  // );
   useEffect(() => {
-    dispatch(toggleDisableScreen(createPostModalVisible));
-  }, [createPostModalVisible]);
+    dispatch(toggleDisableScreen(toggleCreatePost));
+  }, [toggleCreatePost]);
   return (
     <div className="create__post">
       <div className="create__post__top">
         {withPhoto && <ProfileImage withMargin />}
-        {loading && <h4>Loading.</h4>}
+        {/* {loading && <h4>Loading.</h4>} */}
         <div
           className="create__post__start__button"
           onClick={() => {
             console.log('click');
-            setCreatePostModalVisible(true);
+            dispatch(toggleCreatePost(true));
           }}
         >
           What's on your mind?

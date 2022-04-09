@@ -3,15 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 export const posts = createSlice({
   name: 'posts',
   initialState: {
-    posts: [],
+    posts: 'hello',
   },
   reducers: {
-    updatePosts: (state, action) => {
+    setPosts: (state, action) => {
       state.posts = action.payload;
     },
   },
 });
 
-export const { updatePosts } = posts.actions;
-export const selectPosts = (state) => state.posts.posts;
+export const { setPosts } = posts.actions;
+export const selectAllPosts = (state) => state.posts;
 export default posts.reducer;

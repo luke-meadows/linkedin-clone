@@ -1,8 +1,12 @@
 import '../styles/CreatePost.css';
 import CancelIcon from '@mui/icons-material/Add';
 import useCreatePost from '../hooks/useCreatePost';
+import { useDispatch } from 'react-redux';
+import { toggleCreatePost } from '../features/createPost';
 
 export default function CreatePostModal() {
+  const dispatch = useDispatch();
+
   const {
     inputs,
     handleChange,
@@ -11,19 +15,15 @@ export default function CreatePostModal() {
     preview,
     createPostModalVisible,
     setCreatePostModalVisible,
-  } = useCreatePost(
-    {
-      post: '',
-      image: '',
-    }
-    // setPosts,
-    // posts
-  );
+  } = useCreatePost({
+    post: '',
+    image: '',
+  });
   return (
     <div className="create__post__modal">
       <CancelIcon
         onClick={() => {
-          setCreatePostModalVisible(false);
+          dispatch(toggleCreatePost(false));
         }}
       />
       <form className="create__post__form" onSubmit={handleSubmit}>

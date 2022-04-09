@@ -5,16 +5,19 @@ import { useEffect, useState } from 'react';
 import { calculatePostTime } from '../lib/calculatePostTime';
 import { db } from '../db/firebase';
 import ScrollContainer from './ScrollContainer';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAllPosts, setPosts } from '../features/posts';
 
 export default function Feed() {
-  const [posts, setPosts] = useState();
-
+  const dispatch = useDispatch();
+  const posts = useSelector(selectAllPosts);
   useEffect(async () => {
     db.collection('posts')
       .orderBy('createdAt', 'desc')
       .limit(15)
-      .onSnapshot((posts) => {
-        setPosts(posts.docs.map((doc) => doc.data()));
+      .onSnapshot((dbPosts) => {
+        const newPosts = dbPosts.docs.map((doc) => doc.data());
+        dispatch(setPosts(newPosts));
       });
   }, []);
 
@@ -22,7 +25,7 @@ export default function Feed() {
   return (
     <div className="feed__container">
       <ScrollContainer height={{ height: 'calc(100vh - 96px)' }}>
-        <CreatePost posts={posts} setPosts={setPosts} withPhoto />
+        <CreatePost withPhoto />
         {posts.map((post, i) => {
           const time = calculatePostTime(post.createdAt);
           return (

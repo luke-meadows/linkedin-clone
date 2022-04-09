@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import { v4 as uuidv4 } from 'uuid';
 import firebase from 'firebase';
 import { db } from '../db/firebase';
 
-export default function useCreatePost(initialState = {}, setPosts, posts) {
+import { setPosts, selectAllPosts } from '../features/posts';
+
+export default function useCreatePost(initialState = {}) {
   // first get post data and process it
   const user = useSelector(selectUser);
+  const posts = useSelector(selectAllPosts);
   const [inputs, setInputs] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState();
@@ -98,8 +101,8 @@ export default function useCreatePost(initialState = {}, setPosts, posts) {
     });
   }
 
+  const dispatch = useDispatch();
   async function uploadPostToDb(postData) {
-    console.log(posts);
     const postRef = db.collection('posts').doc();
     postRef
       .set({
@@ -107,10 +110,16 @@ export default function useCreatePost(initialState = {}, setPosts, posts) {
         postId: postRef.id,
       })
       .then(() => {
-        setPosts([
-          { ...postData, createdAt: { seconds: Date.now() / 1000 } },
-          ...posts,
-        ]);
+        dispatch(
+          setPosts([
+            { ...postData, createdAt: { seconds: Date.now() / 1000 } },
+            ...posts,
+          ])
+        );
+        // setPosts([
+        //   { ...postData, createdAt: { seconds: Date.now() / 1000 } },
+        //   ...posts,
+        // ]);
       });
   }
 
