@@ -1,6 +1,7 @@
 import '../styles/CreatePost.css';
 import ImageIcon from '@mui/icons-material/Image';
 import ProfileImage from './ProfileImage';
+zsdcx;
 import useCreatePost from '../hooks/useCreatePost';
 import AddIcon from '@mui/icons-material/Add';
 import { useDispatch } from 'react-redux';
@@ -43,7 +44,7 @@ export default function CreatePost({ posts, setPosts, withPhoto }) {
           What's on your mind?
         </div>
         {/* // move this onto header */}
-        {createPostModalVisible && (
+        {/* {createPostModalVisible && (
           <div className="create__post__modal">
             <AddIcon
               onClick={() => {
@@ -81,7 +82,7 @@ export default function CreatePost({ posts, setPosts, withPhoto }) {
               </button>
             </form>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

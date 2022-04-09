@@ -4,6 +4,7 @@ import postReducer from '../features/postSlice';
 import disableScreenReducer from '../features/disableScreen';
 import addPhotoReducer from '../features/addPhoto';
 import createPostReducer from '../features/createPost';
+import postReducer from '../features/posts';
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     disableScreen: disableScreenReducer,
     addPhoto: addPhotoReducer,
     createPost: createPostReducer,
+    updatePosts: createPostReducer,
   },
 });

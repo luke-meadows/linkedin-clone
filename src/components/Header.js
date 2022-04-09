@@ -26,7 +26,7 @@ export default function Header() {
       {addPhoto.showModal && (
         <AddImageModal imageToBeUpdated={addPhoto.photoToBeUpdated} />
       )}
-      {/* {showCreatePostModal && <CreatePostModal />} */}
+      {showCreatePostModal && <CreatePostModal />}
       <div className="header">
         <div className="header__container">
           <div className="header__left">
@@ -40,10 +40,6 @@ export default function Header() {
             {loggedInUser && <Search />}
             <HeaderOption Icon={NetworkIcon} url="/network" header="Network" />
             <HeaderOption Icon={PersonIcon} url="/profile" header="Profile" />
-
-            {/* {loggedInUser && (
-            <HeaderOption avatar={loggedInUser.profilePic} url="/profile" />
-          )} */}
           </div>
         </div>
       </div>
