@@ -12,7 +12,7 @@ export default configureStore({
     }),
   reducer: {
     user: userReducer,
-    post: postReducer,
+    posts: postReducer,
     disableScreen: disableScreenReducer,
     addPhoto: addPhotoReducer,
     createPost: createPostReducer,

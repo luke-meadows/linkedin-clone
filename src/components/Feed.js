@@ -16,8 +16,7 @@ export default function Feed() {
       .orderBy('createdAt', 'desc')
       .limit(15)
       .onSnapshot((dbPosts) => {
-        const newPosts = dbPosts.docs.map((doc) => doc.data());
-        dispatch(setPosts(newPosts));
+        dispatch(setPosts(dbPosts.docs.map((doc) => doc.data())));
       });
   }, []);
 
