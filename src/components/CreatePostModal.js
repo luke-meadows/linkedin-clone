@@ -1,5 +1,7 @@
 import '../styles/CreatePost.css';
 import CancelIcon from '@mui/icons-material/Add';
+import ImageIcon from '@mui/icons-material/Image';
+
 import useCreatePost from '../hooks/useCreatePost';
 import { useDispatch } from 'react-redux';
 import { toggleCreatePost } from '../features/createPost';
@@ -37,7 +39,7 @@ export default function CreatePostModal() {
         />
         <label htmlFor="image">
           <div style={{ textAlign: 'left' }}>
-            {/* <ImageIcon style={{ color: '#0a66c2' }} /> */}
+            <ImageIcon style={{ color: '#0a66c2' }} />
           </div>
         </label>
         <input

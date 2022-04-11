@@ -5,9 +5,10 @@
   top: 63px;
   left: 0;
   z-index: 2;
+  border: 3px solid blue;
 }
 .add__image__inner__modal {
-  position: absolute;
+  position: fixed;
   background: white;
   border-radius: 10px;
   border: 1px solid lightgray;

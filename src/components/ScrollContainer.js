@@ -15,7 +15,7 @@ export default function ScrollContainer({ children, height }) {
     updateScrollTo(scrollY);
     if (isScreenDisabled) {
       containerRef.current.style = `position: fixed;
-           top: -${scrollY}px;`;
+         width: 48.1%;  top: -${scrollY}px;`;
     } else {
       containerRef.current.style = `position: initial`;
       window.scrollTo(0, scrollTo);

@@ -26,7 +26,7 @@ export default function Header() {
       {addPhoto.showModal && (
         <AddImageModal imageToBeUpdated={addPhoto.photoToBeUpdated} />
       )}
-      {/* {showCreatePostModal && <CreatePostModal />} */}
+      {showCreatePostModal && <CreatePostModal />}
       <div className="header">
         <div className="header__container">
           <div className="header__left">
