@@ -21,6 +21,7 @@ export default function ProfileInfo() {
           laudantium delectus accusamus iusto voluptatem cum fugit dolorem velit
           voluptatum minus ullam, officia magni!
         </p>
+        <button>Edit profile</button>
       </div>
     </div>
   );
