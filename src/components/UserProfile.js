@@ -10,8 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import FollowerCount from './FollowerCount';
 import { showModal } from '../features/addPhoto';
-import ScrollContainer from './ScrollContainer';
-import SidePanel from './SidePanel';
 import ProfileInfo from './ProfileInfo';
 
 export default function UserProfile({ user }) {
