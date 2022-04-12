@@ -22,12 +22,14 @@ export default function Home() {
         console.log(error);
       });
   }
-
   return (
     <div>
       {!user && <Login />}
       {user?.email && (
-        <div className="app__body home__grid">
+        <div
+          className="app__body home__grid"
+          onScroll={() => console.log('scrolling')}
+        >
           <SidePanel>
             <SideBar logout={signOut} />
             <Chat />

@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import ProfilePage from './pages/ProfilePage';
 import { auth } from './db/firebase';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login, logout } from './features/userSlice';
 import { useEffect } from 'react';
 import Login from './components/Login';
@@ -15,7 +15,6 @@ import Network from './pages/Network';
 
 function App() {
   const dispatch = useDispatch();
-
   // Persist login state
   useEffect(async () => {
     auth.onAuthStateChanged(async (userCredential) => {

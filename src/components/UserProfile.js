@@ -11,6 +11,7 @@ import { selectUser } from '../features/userSlice';
 import FollowerCount from './FollowerCount';
 import { showModal } from '../features/addPhoto';
 import ScrollContainer from './ScrollContainer';
+import SidePanel from './SidePanel';
 
 export default function UserProfile({ user }) {
   const loggedInUserId = useSelector(selectUser).userId;
@@ -39,7 +40,7 @@ export default function UserProfile({ user }) {
   }, [user]);
 
   return (
-    <div>
+    <div className="home__grid">
       <div className="profile__container">
         <div className="profile__container__top">
           <div

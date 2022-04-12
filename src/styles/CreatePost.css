@@ -1,6 +1,5 @@
 .create__post__modal {
   z-index: 20 !important;
-  border: 1px solid blue;
   background: white;
   padding: 16px;
   position: fixed;
