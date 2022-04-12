@@ -9,7 +9,7 @@
   grid-template-columns: 30% 70%;
 }
 .profile__grid {
-  width: 800px;
+  width: var(--max-width);
 }
 
 /* .side__panel {

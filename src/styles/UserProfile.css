@@ -83,3 +83,8 @@
   pointer-events: none;
   cursor: initial;
 }
+
+.profile__bottom {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}

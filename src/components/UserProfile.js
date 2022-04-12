@@ -12,6 +12,7 @@ import FollowerCount from './FollowerCount';
 import { showModal } from '../features/addPhoto';
 import ScrollContainer from './ScrollContainer';
 import SidePanel from './SidePanel';
+import ProfileInfo from './ProfileInfo';
 
 export default function UserProfile({ user }) {
   const loggedInUserId = useSelector(selectUser).userId;
@@ -40,7 +41,7 @@ export default function UserProfile({ user }) {
   }, [user]);
 
   return (
-    <div className="home__grid">
+    <div>
       <div className="profile__container">
         <div className="profile__container__top">
           <div
@@ -84,7 +85,7 @@ export default function UserProfile({ user }) {
           )}
         </div>
 
-        <div className="profile__container__bottom">
+        <div className="profile__container__bottom ">
           <h2 className="user__display__name">{user.username}</h2>
           {/* If on personal profile show followers else show button to follow */}
           {!isThisLoggedInUserProfile ? (
@@ -108,7 +109,8 @@ export default function UserProfile({ user }) {
         </div>
         <CreatePost />
       </div>
-      <ScrollContainer>
+      <div className="profile__bottom">
+        <ProfileInfo />
         <div className="feed__container">
           {posts?.map((post, i) => {
             const time = calculatePostTime(post.createdAt);
@@ -126,7 +128,7 @@ export default function UserProfile({ user }) {
             );
           })}
         </div>
-      </ScrollContainer>
+      </div>
     </div>
   );
 }
