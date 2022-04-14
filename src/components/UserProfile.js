@@ -108,7 +108,10 @@ export default function UserProfile({ user }) {
         {isThisLoggedInUserProfile && <CreatePost />}
       </div>
       <div className="profile__bottom">
-        <ProfileInfo isThisLoggedInUserProfile={isThisLoggedInUserProfile} />
+        <ProfileInfo
+          isThisLoggedInUserProfile={isThisLoggedInUserProfile}
+          user={user}
+        />
         <div className="feed__container">
           {posts?.map((post, i) => {
             const time = calculatePostTime(post.createdAt);

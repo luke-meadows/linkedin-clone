@@ -41,7 +41,7 @@
   margin-bottom: 5px;
 }
 
-.bio > button {
+.profile__info__container > button {
   background: white;
   border: 1px solid #2e67c2;
   color: #2e67c2;
