@@ -65,7 +65,6 @@ export default function useAddImage(imageToBeUpdated) {
     const taskComplete = async () => {
       // Extract the Public URL.
       const URL = await task.snapshot.ref.getDownloadURL();
-      console.log(URL);
       if (imageToBeUpdated === 'profile') {
         // Update the userAuth with profile img.
         user.updateProfile({

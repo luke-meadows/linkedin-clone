@@ -1,0 +1,74 @@
+.edit__profile__modal {
+  position: fixed;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+}
+.inner__edit__profile__modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.content__container {
+  padding: 32px 16px 16px 16px;
+
+  background: white;
+  border-radius: 10px;
+  position: relative;
+}
+.content__container > svg {
+  height: 15px;
+  width: 15px;
+  background: black;
+  color: white;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  margin-bottom: 10px;
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  top: 15px;
+}
+
+.content__container > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.content__container > form > * {
+  margin: 4px 0;
+}
+
+.content__container > form > input,
+.content__container > form > textarea {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  color: grey;
+  background: #eef3f8;
+  outline: none;
+  border: none;
+  margin-bottom: 8px;
+}
+
+.content__container > form > button {
+  color: white;
+  border: 1px solid #2e67c2;
+  background: #2e67c2;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 5px 15px;
+  margin-left: 8px;
+  height: 30px;
+  margin: 16px auto 0 auto;
+  font-size: 10px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+}

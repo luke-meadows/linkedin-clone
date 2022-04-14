@@ -30,6 +30,8 @@ function App() {
             firstName: user.firstName,
             lastName: user.lastName,
             username: `${user.firstName} ${user.lastName}`,
+            location: user.location || null,
+            bio: user.bio || null,
           })
         );
       } else {

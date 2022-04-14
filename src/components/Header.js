@@ -12,6 +12,8 @@ import AddImageModal from './AddImageModal';
 import CreatePostModal from './CreatePostModal';
 import { selectAddPhoto } from '../features/addPhoto';
 import { selectCreatePost } from '../features/createPost';
+import EditProfileModal from './EditProfileModal';
+import { useState } from 'react';
 export default function Header() {
   // Current logged in user
   const loggedInUser = useSelector(selectUser);
@@ -19,6 +21,7 @@ export default function Header() {
   const isScreenDisabled = useSelector(selectDisableScreen);
   const showCreatePostModal = useSelector(selectCreatePost);
   const addPhoto = useSelector(selectAddPhoto);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -27,7 +30,9 @@ export default function Header() {
         <AddImageModal imageToBeUpdated={addPhoto.photoToBeUpdated} />
       )}
       {showCreatePostModal && <CreatePostModal />}
-      <div className="header">
+      <EditProfileModal loggedInUser={loggedInUser} />
+
+      <div className="header" onClick={() => setShowModal(!showModal)}>
         <div className="header__container">
           <div className="header__left">
             <Link to="/">

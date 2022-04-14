@@ -105,10 +105,10 @@ export default function UserProfile({ user }) {
             </div>
           )}
         </div>
-        <CreatePost />
+        {isThisLoggedInUserProfile && <CreatePost />}
       </div>
       <div className="profile__bottom">
-        <ProfileInfo />
+        <ProfileInfo isThisLoggedInUserProfile={isThisLoggedInUserProfile} />
         <div className="feed__container">
           {posts?.map((post, i) => {
             const time = calculatePostTime(post.createdAt);

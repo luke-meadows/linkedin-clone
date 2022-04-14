@@ -74,6 +74,8 @@ export default function Login() {
             username: `${user.firstName} ${user.lastName}`,
             profileImage: userCredential.user.photoURL || null,
             bannerPic: user.bannerImage || null,
+            location: user.location || null,
+            bio: user.bio || null,
           })
         );
       })

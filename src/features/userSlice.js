@@ -18,10 +18,18 @@ export const userSlice = createSlice({
     changeBannerImg: (state, action) => {
       state.user.bannerImage = action.payload;
     },
+    updateProfileInfo: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { login, logout, changeProfileImg, changeBannerImg } =
-  userSlice.actions;
+export const {
+  login,
+  logout,
+  changeProfileImg,
+  changeBannerImg,
+  updateProfileInfo,
+} = userSlice.actions;
 export const selectUser = (state) => state.user.user;
 export default userSlice.reducer;

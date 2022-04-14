@@ -1,7 +1,7 @@
 import '../styles/ProfileInfo.css';
 import PinDropIcon from '@mui/icons-material/PinDrop';
 
-export default function ProfileInfo() {
+export default function ProfileInfo({ isThisLoggedInUserProfile }) {
   return (
     <div className="profile__info__container">
       <h6>Profile Info</h6>
@@ -21,7 +21,8 @@ export default function ProfileInfo() {
           laudantium delectus accusamus iusto voluptatem cum fugit dolorem velit
           voluptatum minus ullam, officia magni!
         </p>
-        <button>Edit profile</button>
+
+        {isThisLoggedInUserProfile && <button>Edit profile</button>}
       </div>
     </div>
   );
