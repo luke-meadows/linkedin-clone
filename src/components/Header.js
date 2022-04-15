@@ -21,7 +21,6 @@ export default function Header() {
   const isScreenDisabled = useSelector(selectDisableScreen);
   const showCreatePostModal = useSelector(selectCreatePost);
   const addPhoto = useSelector(selectAddPhoto);
-  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -30,9 +29,9 @@ export default function Header() {
         <AddImageModal imageToBeUpdated={addPhoto.photoToBeUpdated} />
       )}
       {showCreatePostModal && <CreatePostModal />}
-      <EditProfileModal loggedInUser={loggedInUser} />
+      {/* <EditProfileModal loggedInUser={loggedInUser} /> */}
 
-      <div className="header" onClick={() => setShowModal(!showModal)}>
+      <div className="header">
         <div className="header__container">
           <div className="header__left">
             <Link to="/">
