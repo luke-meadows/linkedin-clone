@@ -2,7 +2,7 @@
   position: sticky;
   min-height: 50px;
   height: fit-content;
-  top: 100px;
+  top: 91px;
   margin-right: 15px;
   background: white;
   border-radius: 10px;
@@ -51,9 +51,11 @@
   padding: 5px 15px;
   margin-left: 8px;
   height: 30px;
-  margin: 16px auto 0 auto;
+  margin: 32px auto 8px auto;
   font-size: 10px;
   font-weight: 600;
-  margin-bottom: 8px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
