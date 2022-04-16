@@ -1,18 +1,30 @@
 import '../styles/EditProfileModal.css';
 import CancelIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser, updateProfileInfo } from '../features/userSlice';
+import { updateProfileInfo } from '../features/userSlice';
 import { useEffect, useState } from 'react';
 import { auth, db } from '../db/firebase';
+import {
+  selectEditProfileModal,
+  toggleEditProfileModal,
+} from '../features/editProfileModal';
+import { toggleDisableScreen } from '../features/disableScreen';
 
 export default function EditProfileModal({ loggedInUser }) {
   const dispatch = useDispatch();
+  const editProfileModal = useSelector(selectEditProfileModal);
   const [inputs, setInputs] = useState({
     firstName: loggedInUser.firstName,
     lastName: loggedInUser.lastName,
     bio: loggedInUser.bio || 'About you...',
     location: loggedInUser.location || 'Where do you live?',
   });
+
+  useEffect(() => {
+    dispatch(toggleDisableScreen(true));
+
+    return () => dispatch(toggleDisableScreen(false));
+  }, []);
 
   function handleChange(e) {
     const { value, name } = e.target;
@@ -32,13 +44,18 @@ export default function EditProfileModal({ loggedInUser }) {
     // Update redux state with new img and perform rerender.
     const newUserState = { ...loggedInUser, ...inputs };
     dispatch(updateProfileInfo(newUserState));
+    dispatch(toggleEditProfileModal(false));
   }
 
   return (
     <div className="edit__profile__modal">
       <div className="inner__edit__profile__modal">
         <div className="content__container">
-          <CancelIcon onClick={() => {}} />
+          <CancelIcon
+            onClick={() => {
+              dispatch(toggleEditProfileModal(false));
+            }}
+          />
           <form action="" onSubmit={editProfileDetails}>
             <label htmlFor="name">First name</label>
             <input

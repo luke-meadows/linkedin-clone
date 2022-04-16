@@ -13,7 +13,7 @@ import CreatePostModal from './CreatePostModal';
 import { selectAddPhoto } from '../features/addPhoto';
 import { selectCreatePost } from '../features/createPost';
 import EditProfileModal from './EditProfileModal';
-import { useState } from 'react';
+import { selectEditProfileModal } from '../features/editProfileModal';
 export default function Header() {
   // Current logged in user
   const loggedInUser = useSelector(selectUser);
@@ -21,6 +21,7 @@ export default function Header() {
   const isScreenDisabled = useSelector(selectDisableScreen);
   const showCreatePostModal = useSelector(selectCreatePost);
   const addPhoto = useSelector(selectAddPhoto);
+  const editProfileModal = useSelector(selectEditProfileModal);
 
   return (
     <>
@@ -29,7 +30,7 @@ export default function Header() {
         <AddImageModal imageToBeUpdated={addPhoto.photoToBeUpdated} />
       )}
       {showCreatePostModal && <CreatePostModal />}
-      {/* <EditProfileModal loggedInUser={loggedInUser} /> */}
+      {editProfileModal && <EditProfileModal loggedInUser={loggedInUser} />}
 
       <div className="header">
         <div className="header__container">

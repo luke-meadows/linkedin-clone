@@ -24,7 +24,6 @@ export default function SideBar({ logout }) {
         photoToBeUpdated: e.currentTarget.dataset.imagetype,
       })
     );
-    dispatch(toggleDisableScreen(true));
   }
 
   return (

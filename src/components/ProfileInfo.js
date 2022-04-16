@@ -1,7 +1,14 @@
 import '../styles/ProfileInfo.css';
 import PinDropIcon from '@mui/icons-material/PinDrop';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectEditProfileModal,
+  toggleEditProfileModal,
+} from '../features/editProfileModal';
 
 export default function ProfileInfo({ isThisLoggedInUserProfile, user }) {
+  const dispatch = useDispatch();
+
   return (
     <div className="profile__info__container">
       <h6>Profile Info</h6>
@@ -15,11 +22,18 @@ export default function ProfileInfo({ isThisLoggedInUserProfile, user }) {
       )}
       {user.bio && (
         <div className="bio">
-          <h6>Bio</h6>
           <p>{user.bio}</p>
         </div>
       )}
-      {isThisLoggedInUserProfile && <button>Edit profile</button>}
+      {isThisLoggedInUserProfile && (
+        <button
+          onClick={() => {
+            dispatch(toggleEditProfileModal(true));
+          }}
+        >
+          Edit profile
+        </button>
+      )}
     </div>
   );
 }

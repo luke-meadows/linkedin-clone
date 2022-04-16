@@ -84,7 +84,9 @@ export default function UserProfile({ user }) {
         </div>
 
         <div className="profile__container__bottom ">
-          <h2 className="user__display__name">{user.username}</h2>
+          <h2 className="user__display__name">
+            {user.firstName} {user.lastName}
+          </h2>
           {/* If on personal profile show followers else show button to follow */}
           {!isThisLoggedInUserProfile ? (
             <div className="following__container">

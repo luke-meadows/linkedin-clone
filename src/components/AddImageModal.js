@@ -16,6 +16,13 @@ export default function AddImageModal({ imageToBeUpdated }) {
     profile: 'profilePics/',
     banner: 'bannerPics/',
   };
+
+  useEffect(() => {
+    dispatch(toggleDisableScreen(true));
+
+    return () => dispatch(toggleDisableScreen(false));
+  }, []);
+
   // Create a preview as a side effect, whenever selected file is changed.
   useEffect(() => {
     if (!image) {
@@ -112,7 +119,7 @@ export default function AddImageModal({ imageToBeUpdated }) {
         })
       );
     };
-    dispatch(toggleDisableScreen(false));
+
     // At different stages of the upload perform separate functions.
     task.on('state_changed', taskInProgress, taskError, taskComplete);
   }

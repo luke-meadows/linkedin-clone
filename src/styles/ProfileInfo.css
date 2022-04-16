@@ -6,11 +6,11 @@
   margin-right: 15px;
   background: white;
   border-radius: 10px;
-  padding: 10px;
+  padding: 16px;
 }
 
 .profile__info__container > h6 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 16px;
 }
@@ -18,8 +18,8 @@
 .profile__location {
   display: flex;
   align-items: center;
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   margin-bottom: 16px;
 }
 
@@ -31,20 +31,14 @@
 }
 
 .bio {
-  font-size: 10px;
-  font-weight: 500;
-  font-weight: 500;
-}
-
-.bio > h6 {
   font-size: 12px;
-  margin-bottom: 5px;
+  font-weight: 500;
 }
 
 .profile__info__container > button {
-  background: white;
+  color: white;
   border: 1px solid #2e67c2;
-  color: #2e67c2;
+  background: #2e67c2;
   font-weight: 600;
   cursor: pointer;
   border-radius: 30px;

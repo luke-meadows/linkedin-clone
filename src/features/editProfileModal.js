@@ -17,10 +17,10 @@ export const selectEditProfileModal = (state) =>
   state.editProfileModal.editProfileModal;
 export default editProfileModal.reducer;
 
-// import { toggleDisableScreen } from '../features/disableScreen';
+// import { toggleEditProfileModal } from '../features/disableScreen';
 
 // const dispatch = useDispatch();
 
-//dispatch(toggleDisableScreen());
+//dispatch(toggleEditProfileModal());
 
-// const disableScreen = useSelector(selectDisableScreen); true / false
+// const editProfileModal = useSelector(selectEditProfileModal); true / false
